@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Domain.Entities",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Infrastructure.Persistence.EfContexts", "TurboKart.Infrastructure.Persistence.EfContexts\TurboKart.Infrastructure.Persistence.EfContexts.csproj", "{A08073BE-EACB-49A2-82F3-75DB088082EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Infrastructure.Persistence.Interfaces", "TurboKart.Infrastructure.Persistence.Interfaces\TurboKart.Infrastructure.Persistence.Interfaces.csproj", "{A36A8724-048D-48D1-B1F5-9AD1ECAE00E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A08073BE-EACB-49A2-82F3-75DB088082EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A08073BE-EACB-49A2-82F3-75DB088082EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A08073BE-EACB-49A2-82F3-75DB088082EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A36A8724-048D-48D1-B1F5-9AD1ECAE00E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A36A8724-048D-48D1-B1F5-9AD1ECAE00E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A36A8724-048D-48D1-B1F5-9AD1ECAE00E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A36A8724-048D-48D1-B1F5-9AD1ECAE00E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{9A4AF4A1-38C4-4D51-8D5B-11000883CD49} = {017068BC-0695-473B-8BC4-20ABA4802E80}
 		{A60B95F0-34E8-413E-8258-436BD25C5459} = {BC59BC81-90E0-4FED-9719-04439D68C756}
 		{A08073BE-EACB-49A2-82F3-75DB088082EA} = {9A4AF4A1-38C4-4D51-8D5B-11000883CD49}
+		{A36A8724-048D-48D1-B1F5-9AD1ECAE00E1} = {9A4AF4A1-38C4-4D51-8D5B-11000883CD49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E110200-F77D-49C5-AA7A-7D6DE59BA91F}
