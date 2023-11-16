@@ -7,12 +7,5 @@
 
         T GetBy(object id);
 
-
-
-
-
-
-
-
     }
 }
