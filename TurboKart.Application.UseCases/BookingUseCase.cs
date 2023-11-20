@@ -16,7 +16,18 @@ namespace TurboKart.Application.UseCases
 
         public void BookNew(DateTime dateTime, Customer customer)
         {
-            Booking booking = new Booking() { Start = dateTime };
+            Booking booking = new Booking() { Start = dateTime, Customer = customer };
+
+            if (customer.CustomerId == 0)
+            {
+                ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
+                customerRepository.Save(customer);
+            }
+
+            IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+            bookingRepository.Save(booking);
+
+            unitOfWork.Commit();
         }
 
         public IEnumerable<Booking> GetAllBookings()
