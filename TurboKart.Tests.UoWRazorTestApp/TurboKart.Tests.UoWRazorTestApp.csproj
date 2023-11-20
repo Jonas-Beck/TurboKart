@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TurboKart.Application.Interfaces\TurboKart.Application.Interfaces.csproj" />
+    <ProjectReference Include="..\TurboKart.Application.UseCases\TurboKart.Application.UseCases.csproj" />
     <ProjectReference Include="..\TurboKart.Domain.Entities\TurboKart.Domain.Entities.csproj" />
     <ProjectReference Include="..\TurboKart.Infrastructure.Persistence.EfContexts\TurboKart.Infrastructure.Persistence.EfContexts.csproj" />
     <ProjectReference Include="..\TurboKart.Infrastructure.Persistence.Interfaces\TurboKart.Infrastructure.Persistence.Interfaces.csproj" />

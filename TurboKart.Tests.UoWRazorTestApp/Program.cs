@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+
+using TurboKart.Application.Interfaces;
+using TurboKart.Application.UseCases;
 using TurboKart.Infrastructure.Persistence.EfContexts;
 using TurboKart.Infrastructure.Persistence.Interfaces;
 using TurboKart.Infrastructure.Persistence.Repositories;
@@ -17,6 +20,7 @@ namespace TurboKart.Tests.UoWRazorTestApp
             builder.Services.AddDbContext<DbContext, TurboKartContext>();
             builder.Services.AddTransient<IBookingRepository, BookingRepository>();
             builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddTransient<IBookingUseCase, BookingUseCase>();
 
             var app = builder.Build();
 

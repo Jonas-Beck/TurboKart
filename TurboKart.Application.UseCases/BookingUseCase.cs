@@ -1,5 +1,4 @@
-﻿
-using TurboKart.Application.Interfaces;
+﻿using TurboKart.Application.Interfaces;
 using TurboKart.Domain.Entities;
 using TurboKart.Infrastructure.Persistence.Interfaces;
 
@@ -32,7 +31,8 @@ namespace TurboKart.Application.UseCases
 
         public IEnumerable<Booking> GetAllBookings()
         {
-            throw new NotImplementedException();
+            IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+            return bookingRepository.GetAll();
         }
 
         public IEnumerable<Booking> GetTodaysBookings()

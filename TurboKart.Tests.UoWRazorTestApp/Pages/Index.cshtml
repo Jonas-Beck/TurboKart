@@ -8,8 +8,9 @@
     <h1 class="display-4">Welcome</h1>
     <p>
         @{
-            var x = Model.UnitOfWork.BookingRepository.GetTodaysBookings().ToList();
+            var x = Model.BookingUseCase.GetAllBookings();
             int i = 0;
         }
+        @x.Count()
     </p>
 </div>
