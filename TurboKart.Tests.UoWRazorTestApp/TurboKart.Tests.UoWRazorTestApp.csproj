@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TurboKart.Domain.Entities\TurboKart.Domain.Entities.csproj" />
+    <ProjectReference Include="..\TurboKart.Infrastructure.Persistence.EfContexts\TurboKart.Infrastructure.Persistence.EfContexts.csproj" />
+    <ProjectReference Include="..\TurboKart.Infrastructure.Persistence.Interfaces\TurboKart.Infrastructure.Persistence.Interfaces.csproj" />
+    <ProjectReference Include="..\TurboKart.Infrastructure.Persistence.Repositories\TurboKart.Infrastructure.Persistence.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>
+        @{
+            var x = Model.UnitOfWork.BookingRepository.GetTodaysBookings().ToList();
+            int i = 0;
+        }
+    </p>
+</div>
