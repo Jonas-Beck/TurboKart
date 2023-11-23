@@ -13,9 +13,9 @@ namespace TurboKart.Application.UseCases
             this.unitOfWork = unitOfWork;
         }
 
-        public void BookNew(DateTime dateTime, Customer customer)
+        public void BookNew(Booking booking, Customer customer)
         {
-            Booking booking = new Booking() { Start = dateTime, Customer = customer };
+            booking.Customer = customer;
 
             if (customer.CustomerId == 0)
             {
@@ -33,6 +33,12 @@ namespace TurboKart.Application.UseCases
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             return bookingRepository.GetAll();
+        }
+
+        public Booking GetSingleBooking(object id)
+        {
+            IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+            return bookingRepository.GetBy(id);
         }
 
         public IEnumerable<Booking> GetTodaysBookings()
