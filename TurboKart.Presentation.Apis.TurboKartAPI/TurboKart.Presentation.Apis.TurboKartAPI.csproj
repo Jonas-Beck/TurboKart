@@ -20,4 +20,8 @@
     <ProjectReference Include="..\TurboKart.Infrastructure.Persistence.Repositories\TurboKart.Infrastructure.Persistence.Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

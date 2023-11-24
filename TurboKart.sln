@@ -33,9 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Application.Inter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Application.UseCases", "TurboKart.Application.UseCases\TurboKart.Application.UseCases.csproj", "{846D2878-B83B-4B14-AE0F-7D1C148C0F2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Websites.TurboKartDK", "TurboKart.Presentation.Websites.TurboKartDK\TurboKart.Presentation.Websites.TurboKartDK.csproj", "{0A81DCA2-A475-415A-9B8B-D80D024EA897}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Presentation.Websites.TurboKartDK", "TurboKart.Presentation.Websites.TurboKartDK\TurboKart.Presentation.Websites.TurboKartDK.csproj", "{0A81DCA2-A475-415A-9B8B-D80D024EA897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Apis.TurboKartAPI", "TurboKart.Presentation.Apis.TurboKartAPI\TurboKart.Presentation.Apis.TurboKartAPI.csproj", "{89D22478-616E-4B3A-8041-32B02E94C714}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Presentation.Apis.TurboKartAPI", "TurboKart.Presentation.Apis.TurboKartAPI\TurboKart.Presentation.Apis.TurboKartAPI.csproj", "{89D22478-616E-4B3A-8041-32B02E94C714}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Networking", "Networking", "{8C2633A5-3152-4082-BA47-58B9506C7263}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Infrastructure.Networking.Services", "TurboKart.Infrastructure.Networking.Services\TurboKart.Infrastructure.Networking.Services.csproj", "{84370B45-9494-41CD-8FA5-AB2776E26A63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +83,10 @@ Global
 		{89D22478-616E-4B3A-8041-32B02E94C714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89D22478-616E-4B3A-8041-32B02E94C714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89D22478-616E-4B3A-8041-32B02E94C714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84370B45-9494-41CD-8FA5-AB2776E26A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84370B45-9494-41CD-8FA5-AB2776E26A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84370B45-9494-41CD-8FA5-AB2776E26A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84370B45-9494-41CD-8FA5-AB2776E26A63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +104,8 @@ Global
 		{846D2878-B83B-4B14-AE0F-7D1C148C0F2D} = {390C7E15-075B-4BD0-9B92-E046ADE73232}
 		{0A81DCA2-A475-415A-9B8B-D80D024EA897} = {6B56B0A9-2AA6-4DA4-8F39-B924FF3FCB63}
 		{89D22478-616E-4B3A-8041-32B02E94C714} = {482EFE68-BF78-4C84-9642-31E598C17114}
+		{8C2633A5-3152-4082-BA47-58B9506C7263} = {017068BC-0695-473B-8BC4-20ABA4802E80}
+		{84370B45-9494-41CD-8FA5-AB2776E26A63} = {8C2633A5-3152-4082-BA47-58B9506C7263}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E110200-F77D-49C5-AA7A-7D6DE59BA91F}
