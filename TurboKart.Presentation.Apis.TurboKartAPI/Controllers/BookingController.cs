@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TurboKart.Presentation.Apis.TurboKartAPI.Models;
 
 namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
 {
@@ -40,15 +39,33 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
             return Ok(bookingUseCase.GetTodaysBookings());
         }
 
-        [HttpPost]
-        public ActionResult NewBook(BookingRequest request)
+        [HttpPost("new")]
+        public ActionResult NewBook(Booking booking)
         {
-            Booking booking = request.booking;
-            Customer customer = request.customer;
+            try
+            {
+                bookingUseCase.BookNew(booking);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
 
-            bookingUseCase.BookNew(booking, customer);
+        [HttpPut("update")]
+        public ActionResult Update(Booking booking)
+        {
+            try
+            {
+                bookingUseCase.Update(booking);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
 
-            return Ok();
+            }
         }
     }
 }

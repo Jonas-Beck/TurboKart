@@ -13,14 +13,12 @@ namespace TurboKart.Application.UseCases
             this.unitOfWork = unitOfWork;
         }
 
-        public void BookNew(Booking booking, Customer customer)
+        public void BookNew(Booking booking)
         {
-            booking.Customer = customer;
-
-            if (customer.CustomerId == 0)
+            if (booking.CustomerId == 0)
             {
                 ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
-                customerRepository.Save(customer);
+                customerRepository.Save(booking.Customer);
             }
 
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
@@ -45,6 +43,14 @@ namespace TurboKart.Application.UseCases
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             return bookingRepository.GetTodaysBookings();
+        }
+
+        public void Update(Booking booking)
+        {
+            IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+            bookingRepository.Update(booking);
+
+            unitOfWork.Commit();
         }
     }
 }

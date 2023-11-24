@@ -25,5 +25,12 @@ namespace TurboKart.Application.UseCases
             return customerRepository.GetBy(id);
         }
 
+        public void Update(Customer customer)
+        {
+            ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
+            customerRepository.Update(customer);
+
+            unitOfWork.Commit();
+        }
     }
 }

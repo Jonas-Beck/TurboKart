@@ -14,7 +14,7 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
             this.customerUseCase = customerUseCase;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
             return Ok(customerUseCase.GetAllCustomers());
@@ -28,6 +28,21 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
                 return NotFound("No customer found with that ID");
 
             return Ok(result);
+        }
+
+        [HttpPut("update")]
+        public ActionResult Update(Customer customer)
+        {
+            try
+            {
+                customerUseCase.Update(customer);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+
+            }
         }
 
     }

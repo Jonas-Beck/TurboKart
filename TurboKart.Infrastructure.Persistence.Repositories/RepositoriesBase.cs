@@ -26,5 +26,10 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
         {
             set.Add(entity);
         }
+
+        public void Update(T entity)
+        {
+            set.Entry(entity).State = EntityState.Modified;
+        }
     }
 }

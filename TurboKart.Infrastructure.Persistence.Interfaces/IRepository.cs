@@ -4,8 +4,10 @@
     {
         void Save(T entity);
         IEnumerable<T> GetAll();
-
         T GetBy(object id);
+        void Update(T entity);
+
+
 
     }
 }
