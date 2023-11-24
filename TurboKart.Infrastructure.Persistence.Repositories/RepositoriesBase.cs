@@ -31,5 +31,10 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
         {
             set.Entry(entity).State = EntityState.Modified;
         }
+
+        public void Delete(T entity)
+        {
+            set.Entry(entity).State = EntityState.Deleted;
+        }
     }
 }

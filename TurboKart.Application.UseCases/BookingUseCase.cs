@@ -15,7 +15,7 @@ namespace TurboKart.Application.UseCases
 
         public void BookNew(Booking booking)
         {
-            if (booking.CustomerId == 0)
+            if (booking.CustomerId == 0 && booking.Customer != null)
             {
                 ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
                 customerRepository.Save(booking.Customer);
@@ -49,6 +49,13 @@ namespace TurboKart.Application.UseCases
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             bookingRepository.Update(booking);
+
+            unitOfWork.Commit();
+        }
+        public void Delete(Booking booking)
+        {
+            IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+            bookingRepository.Delete(booking);
 
             unitOfWork.Commit();
         }

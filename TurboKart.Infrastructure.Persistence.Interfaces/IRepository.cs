@@ -6,6 +6,7 @@
         IEnumerable<T> GetAll();
         T GetBy(object id);
         void Update(T entity);
+        void Delete(T entity);
 
 
 

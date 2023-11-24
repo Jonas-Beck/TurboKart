@@ -45,5 +45,20 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
             }
         }
 
+        [HttpDelete("delete")]
+        public ActionResult Delete(Customer customer)
+        {
+            try
+            {
+                customerUseCase.Delete(customer);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+
+            }
+        }
+
     }
 }

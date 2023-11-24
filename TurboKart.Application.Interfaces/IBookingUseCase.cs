@@ -9,5 +9,6 @@ namespace TurboKart.Application.Interfaces
         IEnumerable<Booking> GetTodaysBookings();
         Booking GetSingleBooking(object id);
         void Update(Booking booking);
+        void Delete(Booking booking);
     }
 }

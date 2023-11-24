@@ -7,5 +7,6 @@ namespace TurboKart.Application.Interfaces
         IEnumerable<Customer> GetAllCustomers();
         Customer GetSingleCustomer(object id);
         void Update(Customer customer);
+        void Delete(Customer customer);
     }
 }

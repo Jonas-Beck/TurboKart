@@ -17,6 +17,11 @@ namespace TurboKart.Infrastructure.Networking.Services
             }
         }
 
+        public void Delete(Booking booking)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Booking> GetAllBookings()
         {
             throw new NotImplementedException();

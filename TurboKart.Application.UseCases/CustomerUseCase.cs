@@ -13,6 +13,7 @@ namespace TurboKart.Application.UseCases
             this.unitOfWork = unitOfWork;
         }
 
+
         public IEnumerable<Customer> GetAllCustomers()
         {
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
@@ -31,6 +32,18 @@ namespace TurboKart.Application.UseCases
             customerRepository.Update(customer);
 
             unitOfWork.Commit();
+        }
+        public void Delete(Customer customer)
+        {
+            ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
+            customerRepository.Delete(customer);
+
+            unitOfWork.Commit();
+        }
+
+        public static void NewCustomer(Customer customer)
+        {
+            throw new NotImplementedException();
         }
     }
 }
