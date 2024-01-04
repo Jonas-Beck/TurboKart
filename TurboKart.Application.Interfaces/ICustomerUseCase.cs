@@ -4,8 +4,8 @@ namespace TurboKart.Application.Interfaces
 {
     public interface ICustomerUseCase
     {
-        IEnumerable<Customer> GetAllCustomers();
-        Customer GetSingleCustomer(object id);
+        Task<IEnumerable<Customer>> GetAllCustomers();
+        Task<Customer> GetSingleCustomer(object id);
         void Update(Customer customer);
         void Delete(Customer customer);
     }

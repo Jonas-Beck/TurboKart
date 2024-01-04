@@ -33,7 +33,7 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         public ActionResult<IEnumerable<Booking>> GetTodaysBooking()
         {
             var result = bookingUseCase.GetTodaysBookings();
-            if (result.Count() == 0)
+            if (!result.Result.Any())
                 return NotFound("No bookings today");
 
             return Ok(bookingUseCase.GetTodaysBookings());

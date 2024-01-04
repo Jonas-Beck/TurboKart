@@ -14,16 +14,16 @@ namespace TurboKart.Application.UseCases
         }
 
 
-        public IEnumerable<Customer> GetAllCustomers()
+        public async Task<IEnumerable<Customer>> GetAllCustomers()
         {
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
-            return customerRepository.GetAll();
+            return await customerRepository.GetAll();
         }
 
-        public Customer GetSingleCustomer(object id)
+        public async Task<Customer> GetSingleCustomer(object id)
         {
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
-            return customerRepository.GetBy(id);
+            return await customerRepository.GetBy(id);
         }
 
         public void Update(Customer customer)

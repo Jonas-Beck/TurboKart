@@ -5,9 +5,9 @@ namespace TurboKart.Application.Interfaces
     public interface IBookingUseCase
     {
         void BookNew(Booking booking);
-        IEnumerable<Booking> GetAllBookings();
-        IEnumerable<Booking> GetTodaysBookings();
-        Booking GetSingleBooking(object id);
+        Task<IEnumerable<Booking>> GetAllBookings();
+        Task<IEnumerable<Booking>> GetTodaysBookings();
+        Task<Booking> GetSingleBooking(object id);
         void Update(Booking booking);
         void Delete(Booking booking);
     }

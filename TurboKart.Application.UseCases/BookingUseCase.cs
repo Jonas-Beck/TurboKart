@@ -27,25 +27,25 @@ namespace TurboKart.Application.UseCases
             unitOfWork.Commit();
         }
 
-        public IEnumerable<Booking> GetAllBookings()
+        public async Task<IEnumerable<Booking>> GetAllBookings()
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
-            return bookingRepository.GetAll();
+            return await bookingRepository.GetAll();
         }
 
-        public Booking GetSingleBooking(object id)
+        public async Task<Booking> GetSingleBooking(object id)
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
-            return bookingRepository.GetBy(id);
+            return await bookingRepository.GetBy(id);
         }
 
-        public IEnumerable<Booking> GetTodaysBookings()
+        public async Task<IEnumerable<Booking>> GetTodaysBookings()
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
-            return bookingRepository.GetTodaysBookings();
+            return await bookingRepository.GetTodaysBookings();
         }
 
-        public void Update(Booking booking)
+        public async void Update(Booking booking)
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             bookingRepository.Update(booking);

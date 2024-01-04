@@ -10,11 +10,9 @@ namespace TurboKart.Infrastructure.Networking.Services
 
         public async void BookNew(Booking booking)
         {
-            using (HttpClient client = new())
-            {
-                client.BaseAddress = new Uri(URL);
-                var result = await client.PostAsJsonAsync("/api/Booking/new", booking);
-            }
+            using HttpClient client = new();
+            client.BaseAddress = new Uri(URL);
+            await client.PostAsJsonAsync("/api/Booking/new", booking);
         }
 
         public void Delete(Booking booking)
@@ -22,17 +20,17 @@ namespace TurboKart.Infrastructure.Networking.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Booking> GetAllBookings()
+        public Task<IEnumerable<Booking>> GetAllBookings()
         {
             throw new NotImplementedException();
         }
 
-        public Booking GetSingleBooking(object id)
+        public Task<Booking> GetSingleBooking(object id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Booking> GetTodaysBookings()
+        public Task<IEnumerable<Booking>> GetTodaysBookings()
         {
             throw new NotImplementedException();
         }
