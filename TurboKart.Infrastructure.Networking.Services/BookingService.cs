@@ -20,24 +20,32 @@ namespace TurboKart.Infrastructure.Networking.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Booking>> GetAllBookings()
+        public async Task<IEnumerable<Booking>> GetAllBookings()
         {
-            throw new NotImplementedException();
+            using HttpClient client = new();
+            client.BaseAddress = new Uri(URL);
+            return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/all");
         }
 
-        public Task<Booking> GetSingleBooking(object id)
+        public async Task<Booking> GetSingleBooking(object id)
         {
-            throw new NotImplementedException();
+            using HttpClient client = new();
+            client.BaseAddress = new Uri(URL);
+            return await client.GetFromJsonAsync<Booking>($"api/Booking/{id}");
         }
 
-        public Task<IEnumerable<Booking>> GetTodaysBookings()
+        public async Task<IEnumerable<Booking>> GetTodaysBookings()
         {
-            throw new NotImplementedException();
+            using HttpClient client = new();
+            client.BaseAddress = new Uri(URL);
+            return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/today");
         }
 
-        public void Update(Booking booking)
+        public async void Update(Booking booking)
         {
-            throw new NotImplementedException();
+            using HttpClient client = new();
+            client.BaseAddress = new Uri(URL);
+            await client.PutAsJsonAsync("/api/Booking/Update", booking);
         }
     }
 }
