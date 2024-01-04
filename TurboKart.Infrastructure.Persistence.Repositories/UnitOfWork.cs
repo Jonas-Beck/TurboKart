@@ -21,11 +21,11 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
 
         public ICustomerRepository CustomerRepository => customerRepository;
 
-        public void Commit()
+        public async void Commit()
         {
             try
             {
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
             }
             catch (Exception e)
             {
@@ -33,11 +33,11 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
             }
         }
 
-        public void Dispose()
+        public async void Dispose()
         {
             try
             {
-                dbContext.Dispose();
+                await dbContext.DisposeAsync();
             }
             catch (Exception e)
             {

@@ -11,11 +11,9 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
 
         }
 
-        public IEnumerable<Booking> GetTodaysBookings()
+        public async Task<IEnumerable<Booking>> GetTodaysBookings()
         {
-
-            return set.Where(b => b.Start.Date == DateTime.Today).ToList();
-
+            return await set.Where(b => b.Start.Date == DateTime.Today).ToListAsync();
         }
     }
 }
