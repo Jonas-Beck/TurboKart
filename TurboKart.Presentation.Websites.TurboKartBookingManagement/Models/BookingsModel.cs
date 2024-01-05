@@ -4,8 +4,8 @@ namespace TurboKart.Presentation.Websites.TurboKartBookingManagement.Models;
 
 public class BookingsModel
 {
-    public List<Booking> Bookings { get; set; } = new List<Booking>();
-    public DateOnly? Date { get; set; } = null;
+    public List<Booking> Bookings { get; set; } = new();
+    public DateOnly? Date { get; set; }
     public BookingTimeFrame TimeFrame { get; set; } = BookingTimeFrame.Today;
     public string BookingTimeFrameString()
     {
@@ -27,7 +27,7 @@ public class BookingsModel
     {
         Today,
         Week,
-        Specific
+        Specific,
     }
     
     

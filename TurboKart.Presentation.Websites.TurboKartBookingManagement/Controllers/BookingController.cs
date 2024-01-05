@@ -26,7 +26,6 @@ public class BookingController : Controller
             // Show Bookings for next week
             case BookingsModel.BookingTimeFrame.Week:
                 bookingsModel.Bookings = DummyData();
-                bookingsModel.Date = null;
                 break;
             // Show Bookings for specific date
             case BookingsModel.BookingTimeFrame.Specific:
@@ -35,7 +34,7 @@ public class BookingController : Controller
             // Show Bookings for today
             default:
                 bookingsModel.Bookings = DummyData();
-                bookingsModel.Date = null;
+                //bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
                 break;
         }
         
