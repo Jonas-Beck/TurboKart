@@ -1,0 +1,22 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using Microsoft.IdentityModel.Tokens
+@model BookingsModel
+@{
+    
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>@Model.BookingTimeFrameString()</h2>
+
+@if (@Model.Bookings.IsNullOrEmpty())
+{
+    <p>No Bookings found</p>
+}
+else
+{
+    @foreach (var booking in @Model.Bookings!)
+    {
+        <p>@booking.Start</p>
+        <p>@booking.Customer</p>
+    }
+}

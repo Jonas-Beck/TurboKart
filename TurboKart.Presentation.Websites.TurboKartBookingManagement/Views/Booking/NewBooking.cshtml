@@ -1,0 +1,62 @@
+@model TurboKart.Presentation.Websites.TurboKartBookingManagement.Models.NewBookingModel;
+@{
+}
+
+<div class="row justify-content-center">
+	<div class="col-12 text-center mb-3">
+		<h1>Opret Booking</h1>
+	</div>
+	<div class="col-12 col-md-6">
+		<form method="post" class="row">
+			<div class="col-12">
+				<div class="form-floating mb-3">
+				  <input type="text" class="form-control" id="floatingName" placeholder="" asp-for="Name" required>
+				  <label for="floatingName">Navn</label>
+				</div>	
+			</div>
+			<div class="col-12">
+				<div class="form-floating mb-3">
+				  <input type="email" class="form-control" id="floatingEmail" placeholder="" asp-for="Email" required>
+				  <label for="floatingEmail">Email address</label>
+				</div>	
+			</div>
+			<div class="col-12">
+				<div class="form-floating mb-3">
+				  <input type="tel" class="form-control" id="floatingNumber" placeholder="" asp-for="PhoneNumber" required >
+				  <label for="floatingNumber">Telefonnummer</label>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-floating mb-3">
+					<select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="GrandprixType" required>
+						<option value="1">Enkelt Grandprix</option>
+						<option value="2">Dobbelt Grandprix</option>
+					</select>
+					<label for="floatingSelect">Grandprix Type</label>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-floating mb-3">
+				  <input type="number" class="form-control" id="floatingDrivers" placeholder="" min="1" max="20" asp-for="DriverCount" required >
+				  <label for="floatingDrivers">Antal Deltagere</label>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-floating mb-3">
+				  <input type="date" class="form-control" id="floatingDate" asp-for="Date" required>
+				  <label for="floatingDate">Dato</label>
+				</div>	
+			</div>
+			<div class="col-6">
+				<div class="form-floating mb-3">
+				  <input type="time" class="form-control" id="floatingTime" asp-for="Time"  required>
+				  <label for="floatingTime">Tidspunkt</label>
+				</div>	
+			</div>
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary w-100">Book</button>
+			</div>
+		</form>
+
+	</div>
+</div>
