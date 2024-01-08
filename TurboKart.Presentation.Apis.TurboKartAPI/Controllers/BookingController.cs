@@ -14,15 +14,15 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         }
 
         [HttpGet("all")]
-        public ActionResult<IEnumerable<Booking>> GetAllBookings()
+        public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookings()
         {
-            return Ok(bookingUseCase.GetAllBookings());
+            return Ok( await bookingUseCase.GetAllBookings());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Booking> GetSingleBooking(int id)
+        public async Task<ActionResult<Booking>> GetSingleBooking(int id)
         {
-            var result = bookingUseCase.GetSingleBooking(id);
+            var result = await bookingUseCase.GetSingleBooking(id);
             if (result == null)
                 return NotFound("No booking found with that ID");
 
@@ -30,13 +30,13 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         }
 
         [HttpGet("today")]
-        public ActionResult<IEnumerable<Booking>> GetTodaysBooking()
+        public async Task<ActionResult<IEnumerable<Booking>>> GetTodaysBooking()
         {
-            var result = bookingUseCase.GetTodaysBookings();
-            if (!result.Result.Any())
+            var result = await bookingUseCase.GetTodaysBookings();
+            if (!result.Any())
                 return NotFound("No bookings today");
 
-            return Ok(bookingUseCase.GetTodaysBookings());
+            return Ok(result);
         }
 
         [HttpPost("new")]

@@ -15,15 +15,15 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         }
 
         [HttpGet("all")]
-        public ActionResult<IEnumerable<Customer>> GetAllCustomers()
+        public  async Task<ActionResult<IEnumerable<Customer>>> GetAllCustomers()
         {
-            return Ok(customerUseCase.GetAllCustomers());
+            return Ok( await customerUseCase.GetAllCustomers());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Customer> GetSingleCustomer(int id)
+        public async Task<ActionResult<Customer>> GetSingleCustomer(int id)
         {
-            var result = customerUseCase.GetSingleCustomer(id);
+            var result = await customerUseCase.GetSingleCustomer(id);
             if (result == null)
                 return NotFound("No customer found with that ID");
 

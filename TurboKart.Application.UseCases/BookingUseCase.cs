@@ -45,7 +45,7 @@ namespace TurboKart.Application.UseCases
             return await bookingRepository.GetTodaysBookings();
         }
 
-        public async void Update(Booking booking)
+        public void Update(Booking booking)
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             bookingRepository.Update(booking);
