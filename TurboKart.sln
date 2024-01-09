@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Infrastructure.Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Websites.TurboKartBookingManagement", "TurboKart.Presentation.Websites.TurboKartBookingManagement\TurboKart.Presentation.Websites.TurboKartBookingManagement.csproj", "{F6FBB340-7805-4179-AAAA-B87CAAFAE0F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Websites.TurboKartLIVE", "TurboKart.Presentation.Websites.TurboKartLIVE\TurboKart.Presentation.Websites.TurboKartLIVE.csproj", "{C8D40065-5BAB-4FDD-BB13-9025A8EA5AA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{F6FBB340-7805-4179-AAAA-B87CAAFAE0F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6FBB340-7805-4179-AAAA-B87CAAFAE0F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6FBB340-7805-4179-AAAA-B87CAAFAE0F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8D40065-5BAB-4FDD-BB13-9025A8EA5AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8D40065-5BAB-4FDD-BB13-9025A8EA5AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8D40065-5BAB-4FDD-BB13-9025A8EA5AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8D40065-5BAB-4FDD-BB13-9025A8EA5AA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,6 +119,7 @@ Global
 		{8C2633A5-3152-4082-BA47-58B9506C7263} = {017068BC-0695-473B-8BC4-20ABA4802E80}
 		{84370B45-9494-41CD-8FA5-AB2776E26A63} = {8C2633A5-3152-4082-BA47-58B9506C7263}
 		{F6FBB340-7805-4179-AAAA-B87CAAFAE0F9} = {6B56B0A9-2AA6-4DA4-8F39-B924FF3FCB63}
+		{C8D40065-5BAB-4FDD-BB13-9025A8EA5AA5} = {6B56B0A9-2AA6-4DA4-8F39-B924FF3FCB63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E110200-F77D-49C5-AA7A-7D6DE59BA91F}
