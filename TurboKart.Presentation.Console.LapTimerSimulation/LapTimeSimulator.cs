@@ -1,4 +1,7 @@
+using Grpc.Net.Client;
+
 namespace TurboKart.Presentation.Console.LapTimerSimulation;
+
 using System;
 using System.Threading.Tasks;
 
@@ -68,6 +71,17 @@ public class LapTimeSimulator
         }
 
         await Console.Out.WriteLineAsync($"[{counter++}: {DateTime.Now.ToString("HH:mm:ss")}]\t" + e.ToString());
+
+        using var channel = GrpcChannel.ForAddress("https://localhost:7054/");
+        var client = new LapTimer.LapTimerClient(channel);
+        var request = new CartCrossedRequest
+        {
+            KartNo = e.KartNo,
+            Lap = e.Lap,
+            LapTime = e.LapTime.ToString(),
+            TotalTime = e.TotalTime.ToString()
+        };
+        await client.CartCrossedAsync(request);
     }
 
     // Print Finish Result

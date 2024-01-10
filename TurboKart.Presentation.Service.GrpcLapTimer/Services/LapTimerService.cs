@@ -3,9 +3,9 @@ using Grpc.Core;
 
 namespace TurboKart.Presentation.Service.GrpcLapTimer.Services;
 
-public class LapTimerService : Greeter.GreeterBase
+public class LapTimerService : LapTimer.LapTimerBase
 {
-    
+
     private readonly ILogger<GreeterService> _logger;
 
     public LapTimerService(ILogger<GreeterService> logger)
@@ -13,9 +13,11 @@ public class LapTimerService : Greeter.GreeterBase
         _logger = logger;
     }
 
-    public Task<Empty> CartCrossed(CartCrossedRequest request, ServerCallContext context)
+    public override Task<Empty> CartCrossed(CartCrossedRequest request, ServerCallContext context)
     {
-        var id = request.KartNo;
+        
+        //TODO Send request data using SignalR
+        
         return Task.FromResult(new Empty());
     }
 }

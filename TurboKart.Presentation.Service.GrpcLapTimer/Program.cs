@@ -1,4 +1,3 @@
-using TurboKart.Presentation.Service.GrpcLapTimer;
 using TurboKart.Presentation.Service.GrpcLapTimer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
