@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.SignalR;
+using TurboKart.Presentation.Service.GrpcLapTimer.Hubs;
 
-namespace GrpcLapTimer.Hubs;
+namespace TurboKart.Presentation.Service.GrpcLapTimer;
 
 public class LapTimerHub : Hub<ILapTimerClient>
 {

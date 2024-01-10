@@ -1,4 +1,4 @@
-namespace GrpcLapTimer.Hubs;
+namespace TurboKart.Presentation.Service.GrpcLapTimer.Hubs;
 
 public interface ILapTimerClient
 {

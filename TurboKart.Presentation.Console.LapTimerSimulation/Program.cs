@@ -4,4 +4,4 @@ using TurboKart.Presentation.Console.LapTimerSimulation;
 
 LapTimeSimulator simulator = new LapTimeSimulator();
 
-await simulator.SimulateRealTime(4, 1, 10);
+await simulator.SimulateRealTime(4, 20, 0.1);

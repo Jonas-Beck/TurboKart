@@ -70,6 +70,7 @@ public class LapTimeSimulator
         await Console.Out.WriteLineAsync($"[{counter++}: {DateTime.Now.ToString("HH:mm:ss")}]\t" + e.ToString());
     }
 
+    // Print Finish Result
     private async Task PrintResult(List<Kart> karts)
     {
         var sorted = karts.OrderByDescending(d => d.CurrentLap).ThenBy(d => d.TotalTime).ToList();

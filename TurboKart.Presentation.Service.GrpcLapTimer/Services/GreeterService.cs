@@ -1,7 +1,6 @@
 using Grpc.Core;
-using GrpcLapTimer;
 
-namespace GrpcLapTimer.Services;
+namespace TurboKart.Presentation.Service.GrpcLapTimer.Services;
 
 public class GreeterService : Greeter.GreeterBase
 {

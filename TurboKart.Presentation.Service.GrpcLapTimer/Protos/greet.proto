@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "GrpcLapTimer";
+option csharp_namespace = "TurboKart.Presentation.Service.GrpcLapTimer";
 
 package greet;
 
