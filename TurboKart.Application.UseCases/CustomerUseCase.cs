@@ -26,19 +26,19 @@ namespace TurboKart.Application.UseCases
             return await customerRepository.GetBy(id);
         }
 
-        public void Update(Customer customer)
+        public async Task Update(Customer customer)
         {
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
             customerRepository.Update(customer);
 
-            unitOfWork.Commit();
+            await unitOfWork.Commit();
         }
-        public void Delete(Customer customer)
+        public async Task Delete(Customer customer)
         {
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
             customerRepository.Delete(customer);
 
-            unitOfWork.Commit();
+            await unitOfWork.Commit();
         }
 
         public static void NewCustomer(Customer customer)

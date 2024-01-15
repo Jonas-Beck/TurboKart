@@ -8,14 +8,14 @@ namespace TurboKart.Infrastructure.Networking.Services
     {
         private const string URL = "https://localhost:7161";
 
-        public async void BookNew(Booking booking)
+        public async Task BookNew(Booking booking)
         {
             using HttpClient client = new();
             client.BaseAddress = new Uri(URL);
             await client.PostAsJsonAsync("/api/Booking/new", booking);
         }
 
-        public void Delete(Booking booking)
+        public Task Delete(Booking booking)
         {
             throw new NotImplementedException();
         }
@@ -41,7 +41,7 @@ namespace TurboKart.Infrastructure.Networking.Services
             return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/today");
         }
 
-        public async void Update(Booking booking)
+        public async Task Update(Booking booking)
         {
             using HttpClient client = new();
             client.BaseAddress = new Uri(URL);

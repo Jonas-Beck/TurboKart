@@ -13,7 +13,7 @@ namespace TurboKart.Application.UseCases
             this.unitOfWork = unitOfWork;
         }
 
-        public void BookNew(Booking booking)
+        public async Task BookNew(Booking booking)
         {
             if (booking.CustomerId == 0 && booking.Customer != null)
             {
@@ -24,7 +24,7 @@ namespace TurboKart.Application.UseCases
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             bookingRepository.Save(booking);
 
-            unitOfWork.Commit();
+            await unitOfWork.Commit();
         }
 
         public async Task<IEnumerable<Booking>> GetAllBookings()
@@ -45,19 +45,19 @@ namespace TurboKart.Application.UseCases
             return await bookingRepository.GetTodaysBookings();
         }
 
-        public void Update(Booking booking)
+        public async Task Update(Booking booking)
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             bookingRepository.Update(booking);
 
-            unitOfWork.Commit();
+            await unitOfWork.Commit();
         }
-        public void Delete(Booking booking)
+        public async Task Delete(Booking booking)
         {
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             bookingRepository.Delete(booking);
 
-            unitOfWork.Commit();
+            await unitOfWork.Commit();
         }
     }
 }

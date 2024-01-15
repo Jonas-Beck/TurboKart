@@ -6,7 +6,7 @@ namespace TurboKart.Application.Interfaces
     {
         Task<IEnumerable<Customer>> GetAllCustomers();
         Task<Customer> GetSingleCustomer(object id);
-        void Update(Customer customer);
-        void Delete(Customer customer);
+        Task Update(Customer customer);
+        Task Delete(Customer customer);
     }
 }

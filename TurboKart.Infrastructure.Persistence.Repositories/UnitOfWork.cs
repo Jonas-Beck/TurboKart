@@ -21,7 +21,7 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
 
         public ICustomerRepository CustomerRepository => customerRepository;
 
-        public async void Commit()
+        public async Task Commit()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
             }
         }
 
-        public async void Dispose()
+        public async Task Dispose()
         {
             try
             {
@@ -49,9 +49,9 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
             }
         }
 
-        public void Rollback()
+        public Task Rollback()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

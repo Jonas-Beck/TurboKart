@@ -2,8 +2,8 @@
 {
     public interface IUnitOfWork
     {
-        void Commit();
-        void Rollback();
+        Task Commit();
+        Task Rollback();
 
         IBookingRepository BookingRepository { get; }
         ICustomerRepository CustomerRepository { get; }
