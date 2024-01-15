@@ -5,8 +5,8 @@ namespace TurboKart.Presentation.Service.GrpcLapTimer;
 
 public class LapTimerHub : Hub<ILapTimerClient>
 {
-    public async Task SendMessage(string user, string message)
+    public async Task SendMessage(string kartNo, int lap, string lapTime, string totalTime)
     {
-        await Clients.All.Receivemessage(user, message);
+        await Clients.All.ReceiveMessage(kartNo, lap, lapTime,  totalTime);
     }
 }

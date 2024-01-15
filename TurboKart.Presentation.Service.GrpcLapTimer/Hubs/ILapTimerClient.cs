@@ -2,5 +2,5 @@ namespace TurboKart.Presentation.Service.GrpcLapTimer.Hubs;
 
 public interface ILapTimerClient
 {
-    Task Receivemessage(string user, string messege);
+    Task ReceiveMessage(string kartNo, int lap, string lapTime, string totalTime);
 }

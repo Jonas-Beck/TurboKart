@@ -1,9 +1,52 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.SignalR.Client
+@using TurboKart.Presentation.Websites.TurboKartLIVE.Models
+@inject NavigationManager Navigation
+@implements IAsyncDisposable
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+@foreach(Kart kart in Karts)
+{
+    <p>@kart.KartNo</p>
+    <p>@kart.Lap</p>
+    <p>@kart.LapTime</p>
+    <p>@kart.TotalTime</p>
+}
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?"/>
+@code {
+
+    private HubConnection? hubConnection;
+    public List<Kart> Karts = new List<Kart>();
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl("https://localhost:7054/laptimer")
+            .Build();
+
+        hubConnection.On<string, int, string, string>("ReceiveMessage", (kartNo, lap, lapTime, totalTime) =>
+        {
+            Karts.Add(new Kart(){KartNo = kartNo, Lap = lap, LapTime = TimeSpan.Parse(lapTime), TotalTime = TimeSpan.Parse(totalTime)});
+
+            InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+
+    }
+
+    public bool IsConnected =>
+        hubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+
+}

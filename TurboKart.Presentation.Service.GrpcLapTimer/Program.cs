@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.SignalR;
+using TurboKart.Presentation.Service.GrpcLapTimer;
 using TurboKart.Presentation.Service.GrpcLapTimer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,12 +10,54 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
+builder.Services.AddSignalR();
+
+
+// CORS Middleware
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .SetIsOriginAllowed((host) => true)
+                  .AllowCredentials();
+        });
+});
+
+
+builder.Services.AddResponseCompression(opts =>
+{
+    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+        new[] { "application/octet-stream" });
+});
 
 var app = builder.Build();
 
+
+app.UseResponseCompression();
+
+// Use CORS Middleware
+app.UseCors();
+
 // Configure the HTTP request pipeline.
-app.MapGrpcService<GreeterService>();
 app.MapGrpcService<LapTimerService>();
+app.MapHub<LapTimerHub>("/laptimer");
+
+// Access IHubContext with middleware
+app.Use(async (context, next) =>
+{
+    var hubContext = context.RequestServices
+                            .GetRequiredService<IHubContext<LapTimerHub>>();
+
+    if (next != null)
+    {
+        await next.Invoke();
+    }
+});
+
+
 app.MapGet("/",
     () =>
         "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
