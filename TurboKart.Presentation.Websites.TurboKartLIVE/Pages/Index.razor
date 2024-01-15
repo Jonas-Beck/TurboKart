@@ -3,49 +3,81 @@
 @using TurboKart.Presentation.Websites.TurboKartLIVE.Models
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
+<PageTitle>Turbokart LIVE</PageTitle>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Kart No.</th>
+            <th scope="col">Lap</th>
+            <th scope="col">Laptime</th>
+            <th scope="col">Totaltime</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Kart kart in Karts.OrderByDescending(kart => kart.Lap).ThenByDescending(kart => kart.TotalTime))
+        {
+            <tr>
+                <td>@kart.KartNo</td>
+                <td>@kart.Lap</td>
+                <td>@kart.LapTime.ToString(@"m\:ss\.fff")</td>
+                <td>@kart.TotalTime.ToString(@"h\:mm\:ss\.fff")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
 
-<PageTitle>Index</PageTitle>
-
-@foreach(Kart kart in Karts)
-{
-    <p>@kart.KartNo</p>
-    <p>@kart.Lap</p>
-    <p>@kart.LapTime</p>
-    <p>@kart.TotalTime</p>
-}
+</div>
 
 
 @code {
 
-    private HubConnection? hubConnection;
+    private HubConnection? _hubConnection;
     public List<Kart> Karts = new List<Kart>();
 
     protected override async Task OnInitializedAsync()
     {
-
-        hubConnection = new HubConnectionBuilder()
+        _hubConnection = new HubConnectionBuilder()
             .WithUrl("https://localhost:7054/laptimer")
             .Build();
 
-        hubConnection.On<string, int, string, string>("ReceiveMessage", (kartNo, lap, lapTime, totalTime) =>
+        _hubConnection.On<string, int, string, string>("ReceiveMessage", (kartNo, lap, lapTime, totalTime) =>
         {
-            Karts.Add(new Kart(){KartNo = kartNo, Lap = lap, LapTime = TimeSpan.Parse(lapTime), TotalTime = TimeSpan.Parse(totalTime)});
+            // Add new Kart to list
+            if (Karts.All(kart => kart.KartNo != kartNo))
+            {
+                Karts.Add(new Kart()
+                {
+                    KartNo = kartNo,
+                    Lap = lap,
+                    LapTime = TimeSpan.Parse(lapTime),
+                    TotalTime = TimeSpan.Parse(totalTime)
+                });
+            }
+            // Update existing Kart in list
+            else
+            {
+                Kart find = Karts.FirstOrDefault(kart => kart.KartNo == kartNo)!;
+                find.Lap = lap;
+                find.LapTime = TimeSpan.Parse(lapTime);
+                find.TotalTime = TimeSpan.Parse(totalTime);
+            }
+
 
             InvokeAsync(StateHasChanged);
         });
 
-        await hubConnection.StartAsync();
-
+        await _hubConnection.StartAsync();
     }
 
     public bool IsConnected =>
-        hubConnection?.State == HubConnectionState.Connected;
+        _hubConnection?.State == HubConnectionState.Connected;
 
     public async ValueTask DisposeAsync()
     {
-        if (hubConnection is not null)
+        if (_hubConnection is not null)
         {
-            await hubConnection.DisposeAsync();
+            await _hubConnection.DisposeAsync();
         }
     }
 
