@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using TurboKart.Application.Interfaces;
 using TurboKart.Domain.Entities;
 
-namespace TurboKart.Presentation.Websites.TurboKartDK
+namespace TurboKart.Presentation.Websites.TurboKartDK.Pages
 {
     public class BookingModel : PageModel
     {
-        private readonly IBookingUseCase bookingUseCase;
+        private readonly IBookingUseCase _bookingUseCase;
 
         public BookingModel(IBookingUseCase bookingUseCase)
         {
-            this.bookingUseCase = bookingUseCase;
+            this._bookingUseCase = bookingUseCase;
         }
 
 
@@ -45,11 +45,25 @@ namespace TurboKart.Presentation.Websites.TurboKartDK
 
         public IActionResult OnPost()
         {
-            //TEMP DATE VALUE
-            DateTime tempDate = DateTime.Now;
+            
+            // Create new customer Object to add to Database
+            Customer customer = new Customer
+            {
+                Name = Name,
+                CustomerId = 0,
+                Bookings = null
+            };
 
-            Booking booking = new Booking() { BookingId = 0, CustomerId = 0, Start = tempDate };
-            bookingUseCase.BookNew(booking);
+            // Create new Booking Object to add to Database
+            Booking booking = new Booking
+            {
+                // Convert DateOnly and TimeOnly to DateTime
+                Start = Date.ToDateTime(Time),
+                Customer = customer,
+                CustomerId = 0,
+            };
+
+            _bookingUseCase.BookNew(booking);
 
             return Redirect("/Index");
 
