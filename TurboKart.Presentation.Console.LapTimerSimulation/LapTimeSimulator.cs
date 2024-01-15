@@ -71,17 +71,10 @@ public class LapTimeSimulator
         }
 
         await Console.Out.WriteLineAsync($"[{counter++}: {DateTime.Now.ToString("HH:mm:ss")}]\t" + e.ToString());
+        
+        // Send data using gRPC
+        await SendKartCrossedData(e);
 
-        using var channel = GrpcChannel.ForAddress("https://localhost:7054/");
-        var client = new LapTimer.LapTimerClient(channel);
-        var request = new CartCrossedRequest
-        {
-            KartNo = e.KartNo,
-            Lap = e.Lap,
-            LapTime = e.LapTime.ToString(),
-            TotalTime = e.TotalTime.ToString()
-        };
-        await client.CartCrossedAsync(request);
     }
 
     // Print Finish Result
@@ -96,5 +89,20 @@ public class LapTimeSimulator
         }
 
         await Console.Out.WriteLineAsync(s);
+    }
+
+    private async Task SendKartCrossedData(CrossedLineEventArgs e)
+    {
+        using var channel = GrpcChannel.ForAddress("https://localhost:7054/");
+        var client = new LapTimer.LapTimerClient(channel);
+        var request = new CartCrossedRequest
+        {
+            KartNo = e.KartNo,
+            Lap = e.Lap,
+            LapTime = e.LapTime.ToString(),
+            TotalTime = e.TotalTime.ToString()
+        };
+        
+        await client.CartCrossedAsync(request);
     }
 }
