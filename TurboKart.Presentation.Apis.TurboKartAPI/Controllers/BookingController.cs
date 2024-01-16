@@ -32,19 +32,15 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         [HttpGet("today")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetTodaysBooking()
         {
-            var result = await bookingUseCase.GetTodaysBookings();
-            if (!result.Any())
-                return NotFound("No bookings today");
-
-            return Ok(result);
+            return Ok(await bookingUseCase.GetTodaysBookings());
         }
 
         [HttpPost("new")]
-        public ActionResult NewBook(Booking booking)
+        public async Task<ActionResult> NewBook(Booking booking)
         {
             try
             {
-                bookingUseCase.BookNew(booking);
+                await bookingUseCase.BookNew(booking);
                 return Ok();
             }
             catch (Exception e)
@@ -54,11 +50,11 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         }
 
         [HttpPut("update")]
-        public ActionResult Update(Booking booking)
+        public async Task<ActionResult> Update(Booking booking)
         {
             try
             {
-                bookingUseCase.Update(booking);
+                await bookingUseCase.Update(booking);
                 return Ok();
             }
             catch (Exception e)
@@ -69,11 +65,11 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public ActionResult Delete(Booking booking)
+        public async Task<ActionResult> Delete(Booking booking)
         {
             try
             {
-                bookingUseCase.Delete(booking);
+                await bookingUseCase.Delete(booking);
                 return Ok();
             }
             catch (Exception e)

@@ -31,11 +31,11 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         }
 
         [HttpPut("update")]
-        public ActionResult Update(Customer customer)
+        public async Task<ActionResult> Update(Customer customer)
         {
             try
             {
-                customerUseCase.Update(customer);
+                await customerUseCase.Update(customer);
                 return Ok();
             }
             catch (Exception e)
@@ -46,11 +46,11 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public ActionResult Delete(Customer customer)
+        public async Task<ActionResult> Delete(Customer customer)
         {
             try
             {
-                customerUseCase.Delete(customer);
+                await customerUseCase.Delete(customer);
                 return Ok();
             }
             catch (Exception e)
