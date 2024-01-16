@@ -16,22 +16,30 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         [HttpGet("all")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookings()
         {
+            // Call the GetAllBookings method from the bookingUseCase to retrieve all bookings
+            // and wrap the result in an OkObjectResult to signify a successful HTTP response.
             return Ok( await bookingUseCase.GetAllBookings());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetSingleBooking(int id)
         {
+            // Call the GetSingleBooking method from the bookingUseCase to retrieve booking with specific id
             var result = await bookingUseCase.GetSingleBooking(id);
+            
             if (result == null)
+                // Return NotFound to signify a unsuccessful HTTP response
                 return NotFound("No booking found with that ID");
 
+            // wrap the result in an OkObjectResult to signify a successful HTTP response.
             return Ok(result);
         }
 
         [HttpGet("today")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetTodaysBooking()
         {
+            // Call the GetTodaysBookings method from the bookingUseCase to retrieve all bookings today
+            // and wrap the result in an OkObjectResult to signify a successful HTTP response.
             return Ok(await bookingUseCase.GetTodaysBookings());
         }
 
@@ -40,11 +48,15 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         {
             try
             {
+                // Call the BookNew method from the BookingUseCase to create new booking
                 await bookingUseCase.BookNew(booking);
+                
+                // Return OkObjectResult to signify a successful HTTP response
                 return Ok();
             }
             catch (Exception e)
             {
+                // Return BadRequestResult to signify a unsuccessful HTTP response
                 return BadRequest();
             }
         }
@@ -54,11 +66,15 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         {
             try
             {
+                // Call the Update method from the BookingUseCase to update an existing booking
                 await bookingUseCase.Update(booking);
+                
+                // Return OkObjectResult to signify a successful HTTP response
                 return Ok();
             }
             catch (Exception e)
             {
+                // Return BadRequestResult to signify a unsuccessful HTTP response
                 return BadRequest();
 
             }
@@ -69,13 +85,16 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
         {
             try
             {
+                // Call the Delete method from the BookingUseCase to delete an existing booking
                 await bookingUseCase.Delete(booking);
+                
+                // Return OkObjectResult to signify a successful HTTP response
                 return Ok();
             }
             catch (Exception e)
             {
+                // Return BadRequestResult to signify a unsuccessful HTTP response
                 return BadRequest();
-
             }
         }
     }
