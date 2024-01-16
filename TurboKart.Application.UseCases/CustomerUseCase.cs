@@ -16,28 +16,42 @@ namespace TurboKart.Application.UseCases
 
         public async Task<IEnumerable<Customer>> GetAllCustomers()
         {
+            // Initialize the customer repository from the unit of work
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
+            
+            // Return IEnumerable<Customer> obtained by calling GetALl() on the customer repository
             return await customerRepository.GetAll();
         }
 
         public async Task<Customer> GetSingleCustomer(object id)
         {
+            // Initialize the customer repository from the unit of work
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
+            
+            // Return Customer obtained by calling GetBy(id) on the customer repository
             return await customerRepository.GetBy(id);
         }
 
         public async Task Update(Customer customer)
         {
+            // Initialize the customer repository from the unit of work
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
+            
+            // Update the customer 
             customerRepository.Update(customer);
 
+            // Commit changes to the database 
             await unitOfWork.Commit();
         }
         public async Task Delete(Customer customer)
         {
+            // Initialize the customer repository from the unit of work
             ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
+            
+            // Delete the customer
             customerRepository.Delete(customer);
 
+            // Commit changes to the database
             await unitOfWork.Commit();
         }
 
