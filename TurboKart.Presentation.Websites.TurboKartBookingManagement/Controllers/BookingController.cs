@@ -25,40 +25,23 @@ public class BookingController : Controller
         {
             // Show Bookings for next week
             case BookingsModel.BookingTimeFrame.Week:
-                bookingsModel.Bookings = DummyData();
+                //TODO Add GetWeeksBookings
+                bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
                 break;
             // Show Bookings for specific date
             case BookingsModel.BookingTimeFrame.Specific:
-                bookingsModel.Bookings = DummyData();
+                //TODO Add GetSpecificBookings
+                bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
                 break;
             // Show Bookings for today
             default:
-                bookingsModel.Bookings = DummyData();
-                //bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
+                bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
                 break;
         }
         
         return View(bookingsModel);
     }
 
-    // TEMP METHOD FOR DUMMYDATA
-    private List<Booking> DummyData()
-    {
-        var bookings = new List<Booking>()
-        {
-            new Booking()
-            {
-                Customer = null,
-                BookingId = 1,
-                Start = DateTime.Now
-            }
-        };
-
-        return bookings;
-    }
-
-
-    
     public IActionResult NewBooking()
     {
         return View();
