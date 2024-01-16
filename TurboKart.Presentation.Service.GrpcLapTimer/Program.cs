@@ -26,17 +26,9 @@ builder.Services.AddCors(options =>
         });
 });
 
-
-builder.Services.AddResponseCompression(opts =>
-{
-    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-        new[] { "application/octet-stream" });
-});
-
 var app = builder.Build();
 
 
-app.UseResponseCompression();
 
 // Use CORS Middleware
 app.UseCors();
