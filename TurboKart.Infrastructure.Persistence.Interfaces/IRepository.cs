@@ -2,7 +2,7 @@
 {
     public interface IRepository<T>
     {
-        void Save(T entity);
+        Task Save(T entity);
         Task<IEnumerable<T>> GetAll();
         Task<T> GetBy(object id);
         void Update(T entity);

@@ -22,14 +22,14 @@ namespace TurboKart.Application.UseCases
                 ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
                 
                 // Save the customer to the database 
-                customerRepository.Save(booking.Customer);
+                await customerRepository.Save(booking.Customer);
             }
 
             // Initialize the booking repository from the unit of work
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             
             // Save the booking to the database 
-            bookingRepository.Save(booking);
+            await bookingRepository.Save(booking);
 
             // Commit changes to the database 
             await unitOfWork.Commit();

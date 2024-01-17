@@ -22,7 +22,7 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
             return await set.FindAsync(id);
         }
 
-        public async void Save(T entity)
+        public async Task Save(T entity)
         {
             await set.AddAsync(entity);
         }
