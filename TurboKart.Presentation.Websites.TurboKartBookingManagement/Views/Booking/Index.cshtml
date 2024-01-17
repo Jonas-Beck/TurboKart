@@ -2,24 +2,27 @@
 @using Microsoft.IdentityModel.Tokens
 @model BookingsModel
 @{
-    
     ViewData["Title"] = "Home Page";
 }
 <div class="row">
+    <!-- Title -->
     <div class="col-12">
         <h1>@Model.BookingTimeFrameString()</h1>
     </div>
+    <!-- Bookings Filter Group -->
     <div class="col-auto">
         <div class="btn-toolbar mb-3 gap-2" role="toolbar">
             <div class="btn-group">
+                <!-- Show bookings today -->
                 @Html.ActionLink("Today", "Index", new BookingsModel(), new { @class = @Model.TimeFrame == BookingsModel.BookingTimeFrame.Today ? "btn btn-primary active" : "btn btn-primary" })
+                <!-- Show bookings this week -->
                 @Html.ActionLink("Week", "Index", new BookingsModel() { TimeFrame = BookingsModel.BookingTimeFrame.Week }, new { @class = @Model.TimeFrame == BookingsModel.BookingTimeFrame.Week ? "btn btn-primary active" : "btn btn-primary" })
             </div>
             <div class="input-group">
+                <!-- Show bookings on specific date -->
                 <!--  TODO Use date from input -->
                 @Html.ActionLink("Specific Date", "Index", new BookingsModel() { TimeFrame = BookingsModel.BookingTimeFrame.Specific, Date = new DateOnly(2001, 1, 1) }, new { @class = @Model.TimeFrame == BookingsModel.BookingTimeFrame.Specific ? "btn btn-primary active" : "btn btn-primary" })
                 <input type="date" class="form-control">
-                
             </div>
         </div>
     </div>

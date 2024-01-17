@@ -19,8 +19,10 @@ public class BookingController : Controller
     // GET
     public IActionResult Index(BookingsModel? bookingsModel)
     {
+        // Check if bookingsModel is null. If true initialize new BookingsModel
         bookingsModel ??= new BookingsModel();
 
+        // Switch statement to get bookings from API based on bookingsModel.TimeFrame
         switch (bookingsModel.TimeFrame)
         {
             // Show Bookings for next week
@@ -39,6 +41,7 @@ public class BookingController : Controller
                 break;
         }
         
+        // Return View with bookingsModel populated with bookings
         return View(bookingsModel);
     }
 
@@ -51,6 +54,7 @@ public class BookingController : Controller
     [ActionName("NewBooking")]
     public IActionResult NewBooking(NewBookingModel newBookingModel)
     {
+        // Validate that newBookingModel ModelState is valid
         if (ModelState.IsValid)
         {
             // Create new customer Object to add to Database
@@ -70,12 +74,14 @@ public class BookingController : Controller
                 CustomerId = 0,
             };
 
+            // Call API to add new booking using bookingUseCase.BookNew()
             _bookingUseCase.BookNew(booking);
 
             // Redirect after Creating new booking
             return RedirectToAction("Index", "Booking");
         }
 
+        // Return newBooking view if ModelState is invalid 
         return View();
     }
 }
