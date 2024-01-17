@@ -29,12 +29,12 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
 
         public void Update(T entity)
         {
-             set.Entry(entity).State = EntityState.Modified;
+             set.Update(entity);
         }
 
         public void Delete(T entity)
         {
-            set.Entry(entity).State = EntityState.Deleted;
+            set.Remove(entity);
         }
     }
 }

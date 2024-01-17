@@ -12,8 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddGrpc();
 builder.Services.AddSignalR();
 
-
-
 // CORS Middleware
 builder.Services.AddCors(options =>
 {
@@ -29,17 +27,12 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-
-
 // Use CORS Middleware
 app.UseCors();
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<LapTimerService>();
 app.MapHub<LapTimerHub>("/laptimer");
-
-// Access IHubContext with middleware
-
 
 app.MapGet("/",
     () =>
