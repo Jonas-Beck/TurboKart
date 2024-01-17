@@ -17,7 +17,7 @@
         </thead>
         <tbody>
         <!-- Display all karts in Karts sorted by Laps and then TotalTime -->
-        @foreach (Kart kart in Karts.OrderByDescending(kart => kart.Lap).ThenByDescending(kart => kart.TotalTime))
+        @foreach (Kart kart in Karts.OrderByDescending(kart => kart.Lap).ThenBy(kart => kart.TotalTime))
         {
             <tr>
                 <td>@kart.KartNo</td>

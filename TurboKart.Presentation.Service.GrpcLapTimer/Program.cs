@@ -13,6 +13,7 @@ builder.Services.AddGrpc();
 builder.Services.AddSignalR();
 
 
+
 // CORS Middleware
 builder.Services.AddCors(options =>
 {
@@ -38,16 +39,6 @@ app.MapGrpcService<LapTimerService>();
 app.MapHub<LapTimerHub>("/laptimer");
 
 // Access IHubContext with middleware
-app.Use(async (context, next) =>
-{
-    var hubContext = context.RequestServices
-                            .GetRequiredService<IHubContext<LapTimerHub>>();
-
-    if (next != null)
-    {
-        await next.Invoke();
-    }
-});
 
 
 app.MapGet("/",
