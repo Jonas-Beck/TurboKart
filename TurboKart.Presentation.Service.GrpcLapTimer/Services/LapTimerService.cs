@@ -20,7 +20,7 @@ public class LapTimerService : LapTimer.LapTimerBase
     public override Task<Empty> CartCrossed(CartCrossedRequest request, ServerCallContext context)
     {
 
-        //TODO Send request data using SignalR
+        // Send CartCrossedRequest data to all SignalR Clients 
         _hubContext.Clients.All.ReceiveMessage(request.KartNo, request.Lap, request.LapTime, request.TotalTime);
 
         return Task.FromResult(new Empty());

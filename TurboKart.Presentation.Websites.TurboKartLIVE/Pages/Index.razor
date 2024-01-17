@@ -5,6 +5,7 @@
 @implements IAsyncDisposable
 <PageTitle>Turbokart LIVE</PageTitle>
 <div class="container">
+    <!-- Table to display current rankings -->
     <table class="table">
         <thead>
         <tr>
@@ -15,6 +16,7 @@
         </tr>
         </thead>
         <tbody>
+        <!-- Display all karts in Karts sorted by Laps and then TotalTime -->
         @foreach (Kart kart in Karts.OrderByDescending(kart => kart.Lap).ThenByDescending(kart => kart.TotalTime))
         {
             <tr>
@@ -33,19 +35,24 @@
 @code {
 
     private HubConnection? _hubConnection;
+    
+    // List of Karts that crossed the line 
     public List<Kart> Karts = new List<Kart>();
 
     protected override async Task OnInitializedAsync()
     {
+        // Create HubConnection with laptimer SignalR hub
         _hubConnection = new HubConnectionBuilder()
             .WithUrl("https://localhost:7054/laptimer")
             .Build();
 
+        // Handle ReceiveMessage from SignalR
         _hubConnection.On<string, int, string, string>("ReceiveMessage", (kartNo, lap, lapTime, totalTime) =>
         {
-            // Add new Kart to list
+            // Check if Karts contains a kart with the new KartNo. If false add new kart to list 
             if (Karts.All(kart => kart.KartNo != kartNo))
             {
+                // Add kart to list 
                 Karts.Add(new Kart()
                 {
                     KartNo = kartNo,
@@ -57,26 +64,28 @@
             // Update existing Kart in list
             else
             {
+                // Find kart to update
                 Kart find = Karts.FirstOrDefault(kart => kart.KartNo == kartNo)!;
+                
+                // Update data 
                 find.Lap = lap;
                 find.LapTime = TimeSpan.Parse(lapTime);
                 find.TotalTime = TimeSpan.Parse(totalTime);
             }
 
-
+            // Call StateHasChanged to update UI
             InvokeAsync(StateHasChanged);
         });
 
+        // Start the hubConnection
         await _hubConnection.StartAsync();
     }
-
-    public bool IsConnected =>
-        _hubConnection?.State == HubConnectionState.Connected;
 
     public async ValueTask DisposeAsync()
     {
         if (_hubConnection is not null)
         {
+            // Dispose of HubConnection
             await _hubConnection.DisposeAsync();
         }
     }
