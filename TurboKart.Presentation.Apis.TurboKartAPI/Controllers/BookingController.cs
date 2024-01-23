@@ -42,6 +42,22 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
             // and wrap the result in an OkObjectResult to signify a successful HTTP response.
             return Ok(await bookingUseCase.GetTodaysBookings());
         }
+        
+        [HttpGet("week")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetWeeksBookings()
+        {
+            // Call the GetWeeksBookings method from the bookingUseCase to retrieve all bookings for the next 7 days
+            // and wrap the result in an OkObjectResult to signify a successful HTTP response.
+            return Ok(await bookingUseCase.GetWeeksBookings());
+        }
+        
+        [HttpGet("specific/{date}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetSpecificDateBookings(DateOnly date)
+        {
+            // Call the GetWeeksBookings method from the bookingUseCase to retrieve all bookings for the next 7 days
+            // and wrap the result in an OkObjectResult to signify a successful HTTP response.
+            return Ok(await bookingUseCase.GetSpecificDateBookings(date));
+        }
 
         [HttpPost("new")]
         public async Task<ActionResult> NewBook(Booking booking)

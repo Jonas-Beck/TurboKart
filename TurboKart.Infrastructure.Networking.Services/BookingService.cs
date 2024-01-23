@@ -38,6 +38,19 @@ namespace TurboKart.Infrastructure.Networking.Services
             return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/all");
         }
 
+        public async Task<IEnumerable<Booking>> GetSpecificDateBookings(DateOnly date)
+        {
+            // Create a new instance of HttpClient using the 'using' statement for proper disposal
+            using HttpClient client = new();
+            
+            // Set the base address of the HttpClient to the specified URL
+            client.BaseAddress = new Uri(URL);
+
+            // Send a GET request to the '/api/Booking/specific/{date}' endpoint
+            // Returns a IEnumerable<Booking> with all bookings for that date
+            return await client.GetFromJsonAsync<IEnumerable<Booking>>($"api/Booking/specific/{date.ToString("yyyy-M-d")}");
+        }
+
         public async Task<Booking> GetSingleBooking(object id)
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
@@ -62,6 +75,19 @@ namespace TurboKart.Infrastructure.Networking.Services
             // Send a GET request to the '/api/Booking/today' endpoint
             // Returns a IEnumerable<Booking> with all bookings today
             return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/today");
+        }
+
+        public async Task<IEnumerable<Booking>> GetWeeksBookings()
+        {
+            // Create a new instance of HttpClient using the 'using' statement for proper disposal
+            using HttpClient client = new();
+            
+            // Set the base address of the HttpClient to the specified URL
+            client.BaseAddress = new Uri(URL);
+            
+            // Send a GET request to the '/api/Booking/week' endpoint
+            // Returns a IEnumerable<Booking> with all bookings for the next 7 days
+            return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/week");
         }
 
         public async Task Update(Booking booking)

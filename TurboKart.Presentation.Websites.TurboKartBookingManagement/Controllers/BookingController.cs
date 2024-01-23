@@ -27,13 +27,11 @@ public class BookingController : Controller
         {
             // Show Bookings for next week
             case BookingsModel.BookingTimeFrame.Week:
-                //TODO Add GetWeeksBookings
-                bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
+                bookingsModel.Bookings = _bookingUseCase.GetWeeksBookings().Result.ToList();
                 break;
             // Show Bookings for specific date
             case BookingsModel.BookingTimeFrame.Specific:
-                //TODO Add GetSpecificBookings
-                bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
+                bookingsModel.Bookings = _bookingUseCase.GetSpecificDateBookings(bookingsModel.Date.Value).Result.ToList();
                 break;
             // Show Bookings for today
             default:
@@ -45,6 +43,7 @@ public class BookingController : Controller
         return View(bookingsModel);
     }
 
+    // GET
     public IActionResult NewBooking()
     {
         return View();

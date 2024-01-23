@@ -44,6 +44,15 @@ namespace TurboKart.Application.UseCases
             return await bookingRepository.GetAll();
         }
 
+        public async Task<IEnumerable<Booking>> GetSpecificDateBookings(DateOnly date)
+        {
+            // Initialize the booking repository from the unit of work
+            IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+            
+            // Return IEnumerable<Booking> obtained by calling GetSpecificDateBookings(date) on the booking repository
+            return await bookingRepository.GetSpecificDateBookings(date);
+        }
+
         public async Task<Booking> GetSingleBooking(object id)
         {
             // Initialize the booking repository from the unit of work
@@ -60,6 +69,15 @@ namespace TurboKart.Application.UseCases
             
             // Return IEnumerable<Booking> obtained by calling GetTodaysBookings() on the booking repository
             return await bookingRepository.GetTodaysBookings();
+        }
+
+        public async Task<IEnumerable<Booking>> GetWeeksBookings()
+        {
+            // Initialize the booking repository from the unit of work
+            IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+            
+            // Return IEnumerable<Booking> obtained by calling GetWeeksBookings() on the booking repository
+            return await bookingRepository.GetWeeksBookings();
         }
 
         public async Task Update(Booking booking)
