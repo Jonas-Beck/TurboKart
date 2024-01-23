@@ -11,7 +11,6 @@ Additionally, there is a Console Application that simulates race times. The appl
 ## Table of Contents
 
 -   [Folder Structure](#folder-structure)
--   [Design Patterns](#design-patterns)
 -   [Websites](#websites)
     -   [1. TurboKartDK](#1-turbokartdk)
     -   [2. TurboKart Booking Management](#2-turbokart-booking-management)
@@ -40,12 +39,6 @@ The solution is structured using solution folders that align with the Clean Arch
 -   **Application**: Contains the application logic, including use cases and business rules.
 
 -   **Domain**: Holds the core domain logic, defining entities, value objects, and domain services.
-
-## Design Patterns
-
-TODO
-
-Describe the design patterns used in the project, including CLEAN Architecture, Unit of Work (UoW), Repositories, Dependency Injection (DI), and Inversion of Control (IoC). Explain how these patterns contribute to the project's maintainability and scalability.
 
 ## Websites
 
