@@ -69,7 +69,7 @@ public class BookingController : Controller
     
     [HttpPost]
     [ActionName("NewBooking")]
-    public IActionResult NewBooking(NewBookingModel newBookingModel)
+    public IActionResult NewBooking(BookingModel bookingModel)
     {
         // Validate that newBookingModel ModelState is valid
         if (ModelState.IsValid)
@@ -77,7 +77,7 @@ public class BookingController : Controller
             // Create new customer Object to add to Database
             Customer customer = new Customer
             {
-                Name = newBookingModel.Name,
+                Name = bookingModel.Name,
                 CustomerId = 0,
                 Bookings = null
             };
@@ -86,7 +86,7 @@ public class BookingController : Controller
             Booking booking = new Booking
             {
                 // Convert DateOnly and TimeOnly to DateTime
-                Start = newBookingModel.Date.ToDateTime(newBookingModel.Time),
+                Start = bookingModel.Date.ToDateTime(bookingModel.Time),
                 Customer = customer,
                 CustomerId = 0,
             };
@@ -109,5 +109,55 @@ public class BookingController : Controller
 
         return RedirectToAction("Index", bookingsModel);
     }
+
+    [HttpGet]
+    [ActionName("EditBooking")]
+    public IActionResult EditBooking(int id)
+    {
+        // Get Booking object from API
+        Booking booking = _bookingUseCase.GetSingleBooking(id).Result;
+        
+        // Create BookingModel to display data
+        BookingModel test = new()
+        {
+            CustomerId = booking.CustomerId,
+            BookingId = booking.BookingId,
+            Name = "Jonas Beck",
+            Email = "Jona63m2@edu.campusvejle.dk",
+            PhoneNumber = "52114420",
+            Date = DateOnly.FromDateTime(booking.Start),
+            DriverCount = 5,
+            GrandprixType = "Enkelt Grandprix",
+            Time = TimeOnly.FromDateTime(booking.Start)
+        };
+        
+        // Return View with BookingModel
+        return View(test);
+    } 
+    
+    
+    [HttpPost]
+    [ActionName("EditBooking")]
+    public IActionResult EditBooking(BookingModel bookingModel)
+    {
+        if (ModelState.IsValid)
+        {
+            // Create the new booking object with data from bookingModel
+            Booking booking = new()
+            {
+                CustomerId = bookingModel.CustomerId,
+                BookingId = bookingModel.BookingId,
+                Start = bookingModel.Date.ToDateTime(bookingModel.Time)
+            };
+
+            // Update booking using bookingUseCase to call API
+            _bookingUseCase.Update(booking);
+
+            // Redirect to index again without bookingsModel
+            return RedirectToAction("Index", null);
+        }
+
+        return View(bookingModel);
+    } 
     
 }

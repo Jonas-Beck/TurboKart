@@ -2,8 +2,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TurboKart.Presentation.Websites.TurboKartBookingManagement.Models;
 
-public class NewBookingModel
+public class BookingModel
 {
+    
+    public int BookingId { get; set; }
+    
+    public int CustomerId { get; set; }
+    
     [Required]
     public string Name { get; set; }
 
@@ -11,13 +16,13 @@ public class NewBookingModel
     public string Email { get; set; }
 
     [Required]
-    public double PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; }
 
     [Required]
     public string GrandprixType { get; set; }
 
     [Required]
-    public string DriverCount { get; set; }
+    public int DriverCount { get; set; }
 
     [Required]
     public DateOnly Date { get; set; }

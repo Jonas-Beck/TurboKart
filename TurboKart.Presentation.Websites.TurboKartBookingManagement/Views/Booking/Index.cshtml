@@ -56,6 +56,7 @@
                             @Html.Hidden("bookingId", booking.BookingId)
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this booking?')"  >Delete Booking</button>
                         }
+                        @Html.ActionLink("Edit", "EditBooking", "Booking",  new { id = booking.BookingId}, new { @class = "btn btn-primary"})
                     </th>
                 </tr>
             }
