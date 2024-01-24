@@ -11,6 +11,6 @@ namespace TurboKart.Application.Interfaces
         Task<IEnumerable<Booking>> GetSpecificDateBookings(DateOnly date);
         Task<Booking> GetSingleBooking(object id);
         Task Update(Booking booking);
-        Task Delete(Booking booking);
+        Task Delete(object bookingId);
     }
 }

@@ -16,7 +16,7 @@ public class BookingController : Controller
     }
 
     
-    // GET
+    [HttpGet]
     public IActionResult Index(BookingsModel? bookingsModel)
     {
         // Check if bookingsModel is null. If true initialize new BookingsModel
@@ -28,6 +28,7 @@ public class BookingController : Controller
             // Show Bookings for next week
             case BookingsModel.BookingTimeFrame.Week:
                 bookingsModel.Bookings = _bookingUseCase.GetWeeksBookings().Result.ToList();
+                bookingsModel.Date = null;
                 break;
             // Show Bookings for specific date
             case BookingsModel.BookingTimeFrame.Specific:
@@ -36,14 +37,31 @@ public class BookingController : Controller
             // Show Bookings for today
             default:
                 bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
+                bookingsModel.Date = null;
                 break;
         }
         
         // Return View with bookingsModel populated with bookings
         return View(bookingsModel);
     }
+    
+    
+    // Controller to handle creating a bookingsModel for specific date and redirection to Index action
+    [HttpGet]
+    public IActionResult IndexSpecific(DateOnly date)
+    {
+        // Create new bookingsModel
+        var bookingsModel = new BookingsModel();
 
-    // GET
+        // Set values of Date and TimeFrame
+        bookingsModel.Date = date;
+        bookingsModel.TimeFrame = BookingsModel.BookingTimeFrame.Specific;
+
+        // Redirect to Index action to populate model with data
+        return RedirectToAction("Index", bookingsModel);
+    }
+
+    [HttpGet]
     public IActionResult NewBooking()
     {
         return View();
@@ -83,4 +101,13 @@ public class BookingController : Controller
         // Return newBooking view if ModelState is invalid 
         return View();
     }
+
+    [HttpPost]
+    public IActionResult DeleteBooking(int bookingId, BookingsModel bookingsModel)
+    {
+        _bookingUseCase.Delete(bookingId);
+
+        return RedirectToAction("Index", bookingsModel);
+    }
+    
 }

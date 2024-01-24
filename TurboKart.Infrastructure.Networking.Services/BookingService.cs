@@ -20,9 +20,16 @@ namespace TurboKart.Infrastructure.Networking.Services
             await client.PostAsJsonAsync("/api/Booking/new", booking);
         }
 
-        public Task Delete(Booking booking)
+        public async Task Delete(object bookingId)
         {
-            throw new NotImplementedException();
+            // Create a new instance of HttpClient using the 'using' statement for proper disposal
+            using HttpClient client = new();
+            
+            // Set the base address of the HttpClient to the specified URL
+            client.BaseAddress = new Uri(URL);
+            
+            // Send a DELETE request to the '/api/Booking/delete' endpoint
+            await client.DeleteFromJsonAsync<Booking>($"api/booking/delete/{bookingId}");
         }
 
         public async Task<IEnumerable<Booking>> GetAllBookings()

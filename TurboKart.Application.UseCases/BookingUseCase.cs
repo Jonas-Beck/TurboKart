@@ -91,10 +91,13 @@ namespace TurboKart.Application.UseCases
             // Commit changes to the database
             await unitOfWork.Commit();
         }
-        public async Task Delete(Booking booking)
+        public async Task Delete(object bookingId)
         {
             // Initialize the booking repository from the unit of work
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+
+            // Get the booking object using GetBy 
+            Booking booking = await bookingRepository.GetBy(bookingId);
             
             // Delete the booking
             bookingRepository.Delete(booking);

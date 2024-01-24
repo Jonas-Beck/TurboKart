@@ -96,13 +96,13 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
             }
         }
 
-        [HttpDelete("delete")]
-        public async Task<ActionResult> Delete(Booking booking)
+        [HttpDelete("delete/{bookingId}")]
+        public async Task<ActionResult> Delete(int bookingId)
         {
             try
             {
                 // Call the Delete method from the BookingUseCase to delete an existing booking
-                await bookingUseCase.Delete(booking);
+                await bookingUseCase.Delete(bookingId);
                 
                 // Return OkObjectResult to signify a successful HTTP response
                 return Ok();
