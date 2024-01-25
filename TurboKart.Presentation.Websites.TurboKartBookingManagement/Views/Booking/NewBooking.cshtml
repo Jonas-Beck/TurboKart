@@ -1,3 +1,4 @@
+@using TurboKart.Domain.Entities
 @model TurboKart.Presentation.Websites.TurboKartBookingManagement.Models.BookingModel;
 @{
 }
@@ -40,9 +41,11 @@
             <!-- Grandprix type input  -->
             <div class="col-6">
                 <div class="form-floating mb-3">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="GrandprixType" required>
-                        <option value="1">Enkelt Grandprix</option>
-                        <option value="2">Dobbelt Grandprix</option>
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="Type" required>
+						@foreach (var type in Enum.GetValues(typeof(GrandprixType)))
+						{
+							<option value="@type" >@type Grandprix</option>
+						}
                     </select>
                     <label for="floatingSelect">Grandprix Type</label>
                 </div>

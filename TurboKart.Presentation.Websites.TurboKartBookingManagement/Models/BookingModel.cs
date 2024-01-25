@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using TurboKart.Domain.Entities;
 
 namespace TurboKart.Presentation.Websites.TurboKartBookingManagement.Models;
 
@@ -19,7 +20,7 @@ public class BookingModel
     public string PhoneNumber { get; set; }
 
     [Required]
-    public string GrandprixType { get; set; }
+    public GrandprixType Type { get; set; }
 
     [Required]
     public int DriverCount { get; set; }

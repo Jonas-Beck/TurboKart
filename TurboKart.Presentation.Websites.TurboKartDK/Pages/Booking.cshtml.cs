@@ -25,10 +25,10 @@ namespace TurboKart.Presentation.Websites.TurboKartDK.Pages
         public string PhoneNumber { get; set; }
 
         [BindProperty]
-        public string GrandprixType { get; set; }
+        public GrandprixType Type { get; set; }
 
         [BindProperty]
-        public string DriverCount { get; set; }
+        public int DriverCount { get; set; }
 
         [BindProperty]
         public DateOnly Date { get; set; }
@@ -61,6 +61,8 @@ namespace TurboKart.Presentation.Websites.TurboKartDK.Pages
             {
                 // Convert DateOnly and TimeOnly to DateTime
                 Start = Date.ToDateTime(Time),
+                DriverCount = DriverCount,
+                Type = Type,
                 Customer = customer,
                 CustomerId = 0,
             };

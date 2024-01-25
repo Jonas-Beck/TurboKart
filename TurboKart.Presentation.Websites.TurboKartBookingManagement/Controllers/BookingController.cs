@@ -89,6 +89,8 @@ public class BookingController : Controller
             {
                 // Convert DateOnly and TimeOnly to DateTime
                 Start = bookingModel.Date.ToDateTime(bookingModel.Time),
+                DriverCount = bookingModel.DriverCount,
+                Type = bookingModel.Type,
                 Customer = customer,
                 CustomerId = 0,
             };
@@ -97,7 +99,7 @@ public class BookingController : Controller
             _bookingUseCase.BookNew(booking);
 
             // Redirect after Creating new booking
-            return RedirectToAction("Index", "Booking");
+            return RedirectToAction("Index", "Booking", null);
         }
 
         // Return newBooking view if ModelState is invalid 
@@ -109,7 +111,7 @@ public class BookingController : Controller
     {
         _bookingUseCase.Delete(bookingId);
 
-        return RedirectToAction("Index", bookingsModel);
+        return RedirectToAction("Index", "Booking", bookingsModel);
     }
 
     [HttpGet]
@@ -125,11 +127,11 @@ public class BookingController : Controller
             CustomerId = booking.CustomerId,
             BookingId = booking.BookingId,
             Name = booking.Customer.Name,
-            Email = "Jona63m2@edu.campusvejle.dk",
-            PhoneNumber = "52114420",
+            Email = booking.Customer.Email,
+            PhoneNumber = booking.Customer.Phonenumber,
             Date = DateOnly.FromDateTime(booking.Start),
-            DriverCount = 5,
-            GrandprixType = "Enkelt Grandprix",
+            DriverCount = booking.DriverCount,
+            Type = booking.Type,
             Time = TimeOnly.FromDateTime(booking.Start)
         };
         
@@ -149,12 +151,16 @@ public class BookingController : Controller
             {
                 CustomerId = bookingModel.CustomerId,
                 BookingId = bookingModel.BookingId,
+                Type = bookingModel.Type,
+                DriverCount = bookingModel.DriverCount,
                 Start = bookingModel.Date.ToDateTime(bookingModel.Time)
             };
 
             // Update booking using bookingUseCase to call API
             _bookingUseCase.Update(booking);
 
+             // Todo double check refresh
+        
             // Redirect to index again without bookingsModel
             return RedirectToAction("Index", "Booking", null);
         }
