@@ -69,7 +69,7 @@ public class BookingController : Controller
     
     [HttpPost]
     [ActionName("NewBooking")]
-    public IActionResult NewBooking(BookingModel bookingModel)
+    public async Task<IActionResult> NewBooking(BookingModel bookingModel)
     {
         // Validate that newBookingModel ModelState is valid
         if (ModelState.IsValid)
@@ -96,7 +96,7 @@ public class BookingController : Controller
             };
 
             // Call API to add new booking using bookingUseCase.BookNew()
-            _bookingUseCase.BookNew(booking);
+            await _bookingUseCase.BookNew(booking);
 
             // Redirect after Creating new booking
             return RedirectToAction("Index", "Booking", null);
@@ -107,16 +107,16 @@ public class BookingController : Controller
     }
 
     [HttpPost]
-    public IActionResult DeleteBooking(int bookingId, BookingsModel bookingsModel)
+    public async Task<IActionResult> DeleteBooking(int bookingId, BookingsModel bookingsModel)
     {
-        _bookingUseCase.Delete(bookingId);
+        await _bookingUseCase.Delete(bookingId);
 
         return RedirectToAction("Index", "Booking", bookingsModel);
     }
 
     [HttpGet]
     [ActionName("EditBooking")]
-    public IActionResult EditBooking(int id)
+    public  IActionResult EditBooking(int id)
     {
         // Get Booking object from API
         Booking booking = _bookingUseCase.GetSingleBooking(id).Result;
@@ -142,7 +142,7 @@ public class BookingController : Controller
     
     [HttpPost]
     [ActionName("EditBooking")]
-    public IActionResult EditBooking(BookingModel bookingModel)
+    public async Task<IActionResult> EditBooking(BookingModel bookingModel)
     {
         if (ModelState.IsValid)
         {
@@ -157,10 +157,8 @@ public class BookingController : Controller
             };
 
             // Update booking using bookingUseCase to call API
-            _bookingUseCase.Update(booking);
+            await _bookingUseCase.Update(booking);
 
-             // Todo double check refresh
-        
             // Redirect to index again without bookingsModel
             return RedirectToAction("Index", "Booking", null);
         }
