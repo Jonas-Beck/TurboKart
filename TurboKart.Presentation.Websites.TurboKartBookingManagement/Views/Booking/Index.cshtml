@@ -32,6 +32,7 @@
             <thead>
             <tr>
                 <th scope="col">Booking ID</th>
+                <th scope="col">Navn</th>
                 <th scope="col">Dato</th>
                 <th scope="col">Start tid</th>
                 <th scope="col">Type</th>
@@ -44,6 +45,7 @@
             {
                 <tr>
                     <th>@booking.BookingId</th>
+                    <th>@booking.Customer?.Name</th>
                     <th>@booking.Start.ToShortDateString()</th>
                     <th>@booking.Start.ToShortTimeString()</th>
                     <th>Type</th>

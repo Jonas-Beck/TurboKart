@@ -78,6 +78,8 @@ public class BookingController : Controller
             Customer customer = new Customer
             {
                 Name = bookingModel.Name,
+                Email = bookingModel.Email,
+                Phonenumber = bookingModel.PhoneNumber,
                 CustomerId = 0,
                 Bookings = null
             };
@@ -122,7 +124,7 @@ public class BookingController : Controller
         {
             CustomerId = booking.CustomerId,
             BookingId = booking.BookingId,
-            Name = "Jonas Beck",
+            Name = booking.Customer.Name,
             Email = "Jona63m2@edu.campusvejle.dk",
             PhoneNumber = "52114420",
             Date = DateOnly.FromDateTime(booking.Start),
@@ -154,7 +156,7 @@ public class BookingController : Controller
             _bookingUseCase.Update(booking);
 
             // Redirect to index again without bookingsModel
-            return RedirectToAction("Index", null);
+            return RedirectToAction("Index", "Booking", null);
         }
 
         return View(bookingModel);

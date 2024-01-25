@@ -22,7 +22,7 @@ namespace TurboKart.Presentation.Websites.TurboKartDK.Pages
         public string Email { get; set; }
 
         [BindProperty]
-        public double PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [BindProperty]
         public string GrandprixType { get; set; }
@@ -50,6 +50,8 @@ namespace TurboKart.Presentation.Websites.TurboKartDK.Pages
             Customer customer = new Customer
             {
                 Name = Name,
+                Email = Email,
+                Phonenumber = PhoneNumber,
                 CustomerId = 0,
                 Bookings = null
             };
