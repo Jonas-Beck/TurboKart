@@ -12,12 +12,12 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
             this.set = dbContext.Set<T>();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public virtual async Task<IEnumerable<T>> GetAll()
         {
             return await set.ToListAsync();
         }
 
-        public async Task<T> GetBy(object id)
+        public virtual async Task<T?> GetBy(object id)
         {
             return await set.FindAsync(id);
         }
