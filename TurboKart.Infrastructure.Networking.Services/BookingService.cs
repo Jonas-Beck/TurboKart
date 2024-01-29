@@ -12,10 +12,10 @@ namespace TurboKart.Infrastructure.Networking.Services
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
-            
+
             // Set the base address of the HttpClient to the specified URL
             client.BaseAddress = new Uri(URL);
-            
+
             // Send a POST request to the '/api/Booking/new' endpoint, including the booking information as JSON
             await client.PostAsJsonAsync("/api/Booking/new", booking);
         }
@@ -24,22 +24,22 @@ namespace TurboKart.Infrastructure.Networking.Services
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
-            
+
             // Set the base address of the HttpClient to the specified URL
             client.BaseAddress = new Uri(URL);
-            
-            // Send a DELETE request to the '/api/Booking/delete' endpoint
-            await client.DeleteFromJsonAsync<Booking>($"api/booking/delete/{bookingId}");
+
+            // Send a DELETE request to the '/api/Booking/delete/{bookingId}' endpoint
+            await client.DeleteAsync($"api/booking/delete/{bookingId}");
         }
 
         public async Task<IEnumerable<Booking>> GetAllBookings()
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
-            
+
             // Set the base address of the HttpClient to the specified URL
             client.BaseAddress = new Uri(URL);
-            
+
             // Send a GET request to the '/api/Booking/all' endpoint
             // Returns a IEnumerable<Booking> with all bookings
             return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/all");
@@ -49,7 +49,7 @@ namespace TurboKart.Infrastructure.Networking.Services
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
-            
+
             // Set the base address of the HttpClient to the specified URL
             client.BaseAddress = new Uri(URL);
 
@@ -62,10 +62,10 @@ namespace TurboKart.Infrastructure.Networking.Services
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
-            
+
             // Set the base address of the HttpClient to the specified URL
             client.BaseAddress = new Uri(URL);
-            
+
             // Send a GET request to the '/api/Booking/{id}' endpoint
             // Returns a Booking object with the specified ID
             return await client.GetFromJsonAsync<Booking>($"api/Booking/{id}");
@@ -75,10 +75,10 @@ namespace TurboKart.Infrastructure.Networking.Services
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
-            
+
             // Set the base address of the HttpClient to the specified URL
             client.BaseAddress = new Uri(URL);
-            
+
             // Send a GET request to the '/api/Booking/today' endpoint
             // Returns a IEnumerable<Booking> with all bookings today
             return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/today");
@@ -88,10 +88,10 @@ namespace TurboKart.Infrastructure.Networking.Services
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
-            
+
             // Set the base address of the HttpClient to the specified URL
             client.BaseAddress = new Uri(URL);
-            
+
             // Send a GET request to the '/api/Booking/week' endpoint
             // Returns a IEnumerable<Booking> with all bookings for the next 7 days
             return await client.GetFromJsonAsync<IEnumerable<Booking>>("api/Booking/week");
@@ -101,10 +101,10 @@ namespace TurboKart.Infrastructure.Networking.Services
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
-            
+
             // Set the base address of the HttpClient to the specified URL
             client.BaseAddress = new Uri(URL);
-            
+
             // Send a PUT request to the '/api/Booking/update' endpoint, including the booking information as JSON
             await client.PutAsJsonAsync("/api/Booking/Update", booking);
         }

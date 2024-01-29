@@ -7,7 +7,7 @@ namespace TurboKart.Presentation.Websites.TurboKartBookingManagement.Controllers
 
 public class BookingController : Controller
 {
-    
+
     private readonly IBookingUseCase _bookingUseCase;
 
     public BookingController(IBookingUseCase bookingUseCase)
@@ -15,9 +15,9 @@ public class BookingController : Controller
         _bookingUseCase = bookingUseCase;
     }
 
-    
+
     [HttpGet]
-    public IActionResult Index(BookingsModel? bookingsModel)
+    public async Task<IActionResult> Index(BookingsModel? bookingsModel)
     {
         // Check if bookingsModel is null. If true initialize new BookingsModel
         bookingsModel ??= new BookingsModel();
@@ -27,25 +27,25 @@ public class BookingController : Controller
         {
             // Show Bookings for next week
             case BookingsModel.BookingTimeFrame.Week:
-                bookingsModel.Bookings = _bookingUseCase.GetWeeksBookings().Result.ToList();
+                bookingsModel.Bookings = await _bookingUseCase.GetWeeksBookings();
                 bookingsModel.Date = null;
                 break;
             // Show Bookings for specific date
             case BookingsModel.BookingTimeFrame.Specific:
-                bookingsModel.Bookings = _bookingUseCase.GetSpecificDateBookings(bookingsModel.Date.Value).Result.ToList();
+                bookingsModel.Bookings = await _bookingUseCase.GetSpecificDateBookings(bookingsModel.Date.Value);
                 break;
             // Show Bookings for today
             default:
-                bookingsModel.Bookings = _bookingUseCase.GetTodaysBookings().Result.ToList();
+                bookingsModel.Bookings = await _bookingUseCase.GetTodaysBookings();
                 bookingsModel.Date = null;
                 break;
         }
-        
+
         // Return View with bookingsModel populated with bookings
         return View(bookingsModel);
     }
-    
-    
+
+
     // Controller to handle creating a bookingsModel for specific date and redirection to Index action
     [HttpGet]
     public IActionResult IndexSpecific(DateOnly date)
@@ -66,7 +66,7 @@ public class BookingController : Controller
     {
         return View();
     }
-    
+
     [HttpPost]
     [ActionName("NewBooking")]
     public async Task<IActionResult> NewBooking(BookingModel bookingModel)
@@ -109,18 +109,20 @@ public class BookingController : Controller
     [HttpPost]
     public async Task<IActionResult> DeleteBooking(int bookingId, BookingsModel bookingsModel)
     {
+        // Call API and delete booking
         await _bookingUseCase.Delete(bookingId);
 
+        // Return Index view with same bookingsModel
         return RedirectToAction("Index", "Booking", bookingsModel);
     }
 
     [HttpGet]
     [ActionName("EditBooking")]
-    public  IActionResult EditBooking(int id)
+    public async Task<IActionResult> EditBooking(int id)
     {
         // Get Booking object from API
-        Booking booking = _bookingUseCase.GetSingleBooking(id).Result;
-        
+        Booking booking = await _bookingUseCase.GetSingleBooking(id);
+
         // Create BookingModel to display data
         BookingModel test = new()
         {
@@ -134,12 +136,12 @@ public class BookingController : Controller
             Type = booking.Type,
             Time = TimeOnly.FromDateTime(booking.Start)
         };
-        
+
         // Return View with BookingModel
         return View(test);
-    } 
-    
-    
+    }
+
+
     [HttpPost]
     [ActionName("EditBooking")]
     public async Task<IActionResult> EditBooking(BookingModel bookingModel)
@@ -159,11 +161,14 @@ public class BookingController : Controller
             // Update booking using bookingUseCase to call API
             await _bookingUseCase.Update(booking);
 
+            // TODO Return view with same bookingsModel as before starting edit 
+
             // Redirect to index again without bookingsModel
             return RedirectToAction("Index", "Booking", null);
         }
 
+        // Error in ModelState return view with bookingModel
         return View(bookingModel);
-    } 
-    
+    }
+
 }

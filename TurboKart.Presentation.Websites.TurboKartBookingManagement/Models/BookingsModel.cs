@@ -8,9 +8,10 @@ namespace TurboKart.Presentation.Websites.TurboKartBookingManagement.Models;
 public class BookingsModel
 {
     /// <summary>
-    /// Gets or sets the list of bookings associated with this model.
+    /// Gets or sets the IEnumerable of bookings associated with this model.
+    /// Default value is Empty List of Booking
     /// </summary>
-    public List<Booking> Bookings { get; set; } = new();
+    public IEnumerable<Booking> Bookings { get; set; } = new List<Booking>();
     
     /// <summary>
     /// Gets or sets the date for which bookings are being managed. Can be null for certain time frames.
