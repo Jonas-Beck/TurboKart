@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Service.GrpcLapTimer", "TurboKart.Presentation.Service.GrpcLapTimer\TurboKart.Presentation.Service.GrpcLapTimer.csproj", "{C37A5AB7-9A90-4FD0-92C7-5764D807B579}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Tests.UseCases", "TurboKart.Tests.UseCases\TurboKart.Tests.UseCases.csproj", "{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{C37A5AB7-9A90-4FD0-92C7-5764D807B579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C37A5AB7-9A90-4FD0-92C7-5764D807B579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C37A5AB7-9A90-4FD0-92C7-5764D807B579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +146,7 @@ Global
 		{44F7C531-EDBB-47CB-BA48-7C7A2CCE1E6C} = {FE263C64-8F71-4AE8-8A78-678F258B0DCA}
 		{8D3D9996-488E-4436-9F08-8F8F8D426CA8} = {44F7C531-EDBB-47CB-BA48-7C7A2CCE1E6C}
 		{C37A5AB7-9A90-4FD0-92C7-5764D807B579} = {DC001213-641E-4654-A9C2-D627C91B392D}
+		{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2} = {91597969-507A-4E37-886F-08FE5E706BDD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E110200-F77D-49C5-AA7A-7D6DE59BA91F}
