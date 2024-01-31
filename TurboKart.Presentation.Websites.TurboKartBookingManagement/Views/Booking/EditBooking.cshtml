@@ -1,0 +1,90 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using TurboKart.Domain.Entities
+@model TurboKart.Presentation.Websites.TurboKartBookingManagement.Models.BookingModel;
+@{
+}
+
+<div class="row justify-content-center">
+    <div class="col-12 text-center mb-3">
+        <!-- Title  -->
+        <h1>Edit Booking</h1>
+    </div>
+    <div class="col-12 col-md-6">
+        <!-- New booking form  -->
+        <form method="post" class="row">
+            @Html.HiddenFor(model => model.BookingId)
+            @Html.HiddenFor(model => model.CustomerId)
+            <div class="col-12 text-center pb-2">
+                <h4>Customer Details</h4>
+            </div>
+            <!-- Name input  -->
+            <div class="col-12">
+                <div class="form-floating mb-3">
+                    @Html.HiddenFor(model => model.Name)
+                    <input type="text" class="form-control" id="floatingName" placeholder="" value="@Model.Name" asp-for="Name" disabled required>
+                    <label for="floatingName">Navn</label>
+                </div>
+            </div>
+            <!-- Email Address input  -->
+            <div class="col-12">
+                <div class="form-floating mb-3">
+                    @Html.HiddenFor(model => model.Email)
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="" value="@Model.Email" asp-for="Email"  disabled required>
+                    <label for="floatingEmail">Email address</label>
+                </div>
+            </div>
+            <!-- Phonenumber input  -->
+            <div class="col-12">
+                <div class="form-floating mb-3">
+                    @Html.HiddenFor(model => model.PhoneNumber)
+                    <input type="tel" class="form-control" id="floatingNumber" placeholder="" value="@Model.PhoneNumber" asp-for="PhoneNumber" disabled required>
+                    <label for="floatingNumber">Telefonnummer</label>
+                </div>
+            </div>
+            <div class="col-12 text-center pb-2">
+                <h4>Booking Details</h4>
+            </div>
+            <!-- Grandprix type input  -->
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example" asp-for="Type" required>
+						@foreach (var type in Enum.GetValues(typeof(GrandprixType)))
+						{
+							<option value="@type" >@type Grandprix</option>
+						}
+                    </select>
+                    <label for="floatingSelect">Grandprix Type</label>
+                </div>
+            </div>
+            <!-- Driver Count input  -->
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingDrivers" placeholder="" value="@Model.DriverCount" min="1" max="20" asp-for="DriverCount" required>
+                    <label for="floatingDrivers">Antal Deltagere</label>
+                </div>
+            </div>
+            <!-- Date input  -->
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="floatingDate" value="@Model.Date.ToString("yyyy-MM-dd")" asp-for="Date" required>
+                    <label for="floatingDate">Dato</label>
+                </div>
+            </div>
+            <!-- Time input  -->
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input type="time" class="form-control" id="floatingTime" value="@Model.Time" asp-for="Time" required>
+                    <label for="floatingTime">Tidspunkt</label>
+                </div>
+            </div>
+            <!-- Submit Button  -->
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary w-100">Update</button>
+            </div>
+            <div class="col-6">
+                @Html.ActionLink("Cancel", "Index", "Booking", null, new { @class = "btn btn-danger w-100" })
+            </div>
+        </form>
+
+    </div>
+</div>
