@@ -41,13 +41,13 @@
             </tr>
             </thead>
             <tbody>
-            @foreach (var booking in @Model.Bookings.OrderBy(booking => booking.Start))
+            @foreach (var booking in @Model.Bookings.OrderBy(booking => booking.Time.Start))
             {
                 <tr>
                     <th>@booking.BookingId</th>
                     <th>@booking.Customer?.Name</th>
-                    <th>@booking.Start.ToShortDateString()</th>
-                    <th>@booking.Start.ToShortTimeString()</th>
+                    <th>@booking.Time.Start.ToShortDateString()</th>
+                    <th>@booking.Time.Start.ToShortTimeString()</th>
                     <th>@booking.Type</th>
                     <th>@booking.DriverCount</th>
                     <th class="d-flex gap-2">

@@ -75,7 +75,7 @@ public class BookingController : Controller
         if (ModelState.IsValid)
         {
             // Create new customer Object to add to Database
-            Customer customer = new Customer
+            var customer = new Customer
             {
                 Name = bookingModel.Name,
                 Email = bookingModel.Email,
@@ -85,15 +85,8 @@ public class BookingController : Controller
             };
 
             // Create new Booking Object to add to Database
-            Booking booking = new Booking
-            {
-                // Convert DateOnly and TimeOnly to DateTime
-                Start = bookingModel.Date.ToDateTime(bookingModel.Time),
-                DriverCount = bookingModel.DriverCount,
-                Type = bookingModel.Type,
-                Customer = customer,
-                CustomerId = 0,
-            };
+            var booking = new Booking(bookingModel.Date.ToDateTime(bookingModel.Time), bookingModel.DriverCount,
+                bookingModel.Type, customer.CustomerId, customer);
 
             // Call API to add new booking using bookingUseCase.BookNew()
             await _bookingUseCase.BookNew(booking);
@@ -131,10 +124,10 @@ public class BookingController : Controller
             Name = booking.Customer.Name,
             Email = booking.Customer.Email,
             PhoneNumber = booking.Customer.Phonenumber,
-            Date = DateOnly.FromDateTime(booking.Start),
+            Date = DateOnly.FromDateTime(booking.Time.Start),
             DriverCount = booking.DriverCount,
             Type = booking.Type,
-            Time = TimeOnly.FromDateTime(booking.Start)
+            Time = TimeOnly.FromDateTime(booking.Time.Start)
         };
 
         // Return View with BookingModel
@@ -148,16 +141,18 @@ public class BookingController : Controller
     {
         if (ModelState.IsValid)
         {
-            // Create the new booking object with data from bookingModel
-            Booking booking = new()
-            {
-                CustomerId = bookingModel.CustomerId,
-                BookingId = bookingModel.BookingId,
-                Type = bookingModel.Type,
-                DriverCount = bookingModel.DriverCount,
-                Start = bookingModel.Date.ToDateTime(bookingModel.Time)
-            };
+            // Local variables for booking values to make more readable
+            var bookingDateTime = bookingModel.Date.ToDateTime(bookingModel.Time);
+            var driverCount = bookingModel.DriverCount;
+            var bookingType = bookingModel.Type;
+            var customerId = bookingModel.CustomerId;
+            Customer? customer = null;
+            var bookingId = bookingModel.BookingId;
 
+            // Create the new booking object with data from bookingModel
+            var booking = new Booking(bookingDateTime, driverCount, bookingType, customerId, customer, bookingId);
+            
+            
             // Update booking using bookingUseCase to call API
             await _bookingUseCase.Update(booking);
 

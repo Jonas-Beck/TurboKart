@@ -57,15 +57,7 @@ namespace TurboKart.Presentation.Websites.TurboKartDK.Pages
             };
 
             // Create new Booking Object to add to Database
-            Booking booking = new Booking
-            {
-                // Convert DateOnly and TimeOnly to DateTime
-                Start = Date.ToDateTime(Time),
-                DriverCount = DriverCount,
-                Type = Type,
-                Customer = customer,
-                CustomerId = 0,
-            };
+            Booking booking = new Booking(Date.ToDateTime(Time), DriverCount, Type, customer.CustomerId, customer);
 
             _bookingUseCase.BookNew(booking);
 
