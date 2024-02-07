@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.JavaScript;
 using System.Xml.Linq;
 using Moq;
 using TurboKart.Application.UseCases;
@@ -26,28 +27,27 @@ public class BookingUseCaseTests
         unitOfWorkMock.Setup(unitOfWork => unitOfWork.CustomerRepository).Returns(customerRepositoryMock.Object);
 
         // Create BookingUseCase with UoW mock
-        BookingUseCase bookingUseCase = new BookingUseCase(unitOfWorkMock.Object);
+        var bookingUseCase = new BookingUseCase(unitOfWorkMock.Object);
 
-        // Create booking object based on parameters
-        Booking booking = new Booking
-        {
-            BookingId = 1,
-            Start = DateTime.Now,
-            Type = GrandprixType.Single,
-            DriverCount = 15,
-            CustomerId = customerId,
-            Customer = validCustomer == false ? null : new Customer()
+        // Create Customer object based on validCustomer bool
+        var customer = validCustomer == false
+            ? null
+            : new Customer()
             {
                 Bookings = null,
                 CustomerId = customerId,
                 Email = "Test@test.dk",
                 Name = "John Doe",
                 Phonenumber = "11111111"
-            }
-        };
+            };
+        
+        // Create booking object based on parameters
+        var booking = new Booking(DateTime.Now, 15, GrandprixType.Single, customerId, customer);
         
         // Act
-        await bookingUseCase.BookNew(booking);
+        
+        // TODO add overlapping bookings
+        await bookingUseCase.BookNew(booking, null);
 
         // Assert
         
@@ -78,26 +78,25 @@ public class BookingUseCaseTests
         // Create BookingUseCase with UoW mock
         BookingUseCase bookingUseCase = new BookingUseCase(unitOfWorkMock.Object);
 
-        // Create booking object based on parameters
-        Booking booking = new Booking
-        {
-            BookingId = 1,
-            Start = DateTime.Now,
-            Type = GrandprixType.Single,
-            DriverCount = 15,
-            CustomerId = customerId,
-            Customer = validCustomer == false ? null : new Customer()
+        // Create Customer object based on validCustomer bool
+        var customer = validCustomer == false
+            ? null
+            : new Customer()
             {
                 Bookings = null,
                 CustomerId = customerId,
                 Email = "Test@test.dk",
                 Name = "John Doe",
                 Phonenumber = "11111111"
-            }
-        };
+            };
+        
+        // Create booking object based on parameters
+        var booking = new Booking(DateTime.Now, 15, GrandprixType.Single, customerId, customer);
         
         // Act
-        await bookingUseCase.BookNew(booking);
+        
+        // TODO add overlapping bookings
+        await bookingUseCase.BookNew(booking, null);
 
         // Assert
         
