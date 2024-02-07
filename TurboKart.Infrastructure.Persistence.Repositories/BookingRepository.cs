@@ -29,7 +29,7 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
         {
             // Returns IEnumerable<Booking> containing all bookings with start date today
             return await set.Include( b => b.Customer)
-                            .Where(b => b.Start.Date == DateTime.Today)
+                            .Where(b => b.Time.Start.Date == DateTime.Today)
                             .ToListAsync();
         }
 
@@ -44,7 +44,7 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
 
             // Return all bookings with a start date between today and week
             return await set.Include(b => b.Customer)
-                            .Where(b => b.Start.Date >= today && b.Start.Date <= week)
+                            .Where(b => b.Time.Start.Date >= today && b.Time.Start.Date <= week)
                             .ToListAsync();
         }
 
@@ -53,7 +53,15 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
         {
             // Returns IEnumerable<Booking> containing all bookings with start date same as parameter
             return await set.Include(b => b.Customer)
-                            .Where(b => b.Start.Date == date.ToDateTime(TimeOnly.Parse("00:00")))
+                            .Where(b => b.Time.Start.Date == date.ToDateTime(TimeOnly.Parse("00:00")))
+                            .ToListAsync();
+        }
+
+        // Return all bookings that overlap with a specific Start and End DateTime
+        public async Task<IEnumerable<Booking>> GetOverlappingBookings(DateTimeSpan bookingTime)
+        {
+            return await set.Include(b => b.Customer)
+                            .Where(b => DateTimeSpan.CheckOverlap(b.Time, bookingTime))
                             .ToListAsync();
         }
     }

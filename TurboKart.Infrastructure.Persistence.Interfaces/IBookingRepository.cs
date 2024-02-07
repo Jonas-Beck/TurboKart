@@ -1,4 +1,5 @@
-﻿using TurboKart.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using TurboKart.Domain.Entities;
 
 namespace TurboKart.Infrastructure.Persistence.Interfaces
 {
@@ -7,6 +8,7 @@ namespace TurboKart.Infrastructure.Persistence.Interfaces
         Task<IEnumerable<Booking>> GetTodaysBookings();
         Task<IEnumerable<Booking>> GetWeeksBookings();
         Task<IEnumerable<Booking>> GetSpecificDateBookings(DateOnly date);
+        Task<IEnumerable<Booking>> GetOverlappingBookings(DateTimeSpan bookingTime);
 
     }
 }

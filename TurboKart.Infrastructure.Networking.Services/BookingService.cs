@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Collections;
+using System.Net.Http.Json;
 using TurboKart.Application.Interfaces;
 using TurboKart.Domain.Entities;
 
@@ -8,7 +9,7 @@ namespace TurboKart.Infrastructure.Networking.Services
     {
         private const string URL = "https://localhost:7161";
 
-        public async Task BookNew(Booking booking)
+        public async Task BookNew(Booking booking, IEnumerable<Booking> overlappingBookings = null)
         {
             // Create a new instance of HttpClient using the 'using' statement for proper disposal
             using HttpClient client = new();
@@ -56,6 +57,11 @@ namespace TurboKart.Infrastructure.Networking.Services
             // Send a GET request to the '/api/Booking/specific/{date}' endpoint
             // Returns a IEnumerable<Booking> with all bookings for that date
             return await client.GetFromJsonAsync<IEnumerable<Booking>>($"api/Booking/specific/{date.ToString("yyyy-M-d")}");
+        }
+
+        public async Task<IEnumerable<Booking>> GetOverlappingBookings(DateTimeSpan bookingTime)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Booking> GetSingleBooking(object id)

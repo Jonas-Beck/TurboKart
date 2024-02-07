@@ -13,23 +13,47 @@ namespace TurboKart.Application.UseCases
             this.unitOfWork = unitOfWork;
         }
 
-        public async Task BookNew(Booking booking)
+        public async Task BookNew(Booking newBooking, IEnumerable<Booking> overlappingBookings)
         {
+            // Check new booking driverCount throw exception if not valid
+            if (newBooking.DriverCount is > 20 or <= 0)
+                throw new ArgumentException("Driver count needs to be between 1-20");
+
+            // Check if new booking has any overlaps
+            if (!overlappingBookings.Any())
+            {
+                // Add new booking to list with overlap bookings
+                overlappingBookings = overlappingBookings.Append(newBooking);
+
+                // Loop list of all bookings that overlap with the new booking
+                foreach (Booking booking  in overlappingBookings)
+                {
+                    // Get total driverCount of all bookings that overlap with the current booking from loop
+                    var totalDriverCount = overlappingBookings
+                        .Where(b => DateTimeSpan.CheckOverlap(booking.Time, b.Time))
+                        .Aggregate(0, (total, next) => total + next.DriverCount);
+
+                    // If totalDriverCount > 20 the new booking cannot be created 
+                    if (totalDriverCount > 20)
+                        throw new ArgumentException("Not enough space on the track");
+                }
+            }
+            
             // Check if customer ID is not provided but customer details are provided
-            if (booking.CustomerId == 0 && booking.Customer != null)
+            if (newBooking.CustomerId == 0 && newBooking.Customer != null)
             {
                 // Initialize the customer repository from the unit of work
                 ICustomerRepository customerRepository = unitOfWork.CustomerRepository;
                 
                 // Save the customer to the database 
-                await customerRepository.Save(booking.Customer);
+                await customerRepository.Save(newBooking.Customer);
             }
 
             // Initialize the booking repository from the unit of work
             IBookingRepository bookingRepository = unitOfWork.BookingRepository;
             
             // Save the booking to the database 
-            await bookingRepository.Save(booking);
+            await bookingRepository.Save(newBooking);
 
             // Commit changes to the database 
             await unitOfWork.Commit();
@@ -51,6 +75,15 @@ namespace TurboKart.Application.UseCases
             
             // Return IEnumerable<Booking> obtained by calling GetSpecificDateBookings(date) on the booking repository
             return await bookingRepository.GetSpecificDateBookings(date);
+        }
+
+        public async Task<IEnumerable<Booking>> GetOverlappingBookings(DateTimeSpan bookingTime)
+        {
+            // Initialize the booking repository from the unit of work
+            IBookingRepository bookingRepository = unitOfWork.BookingRepository;
+
+            // Return IEnumerable<Booking> obtained by calling GetOverlappingBookings(start, end) on the booking repository
+            return await bookingRepository.GetOverlappingBookings(bookingTime);
         }
 
         public async Task<Booking> GetSingleBooking(object id)

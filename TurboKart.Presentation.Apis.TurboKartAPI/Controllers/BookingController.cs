@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Runtime.InteropServices.JavaScript;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
 {
@@ -58,22 +59,25 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
             // and wrap the result in an OkObjectResult to signify a successful HTTP response.
             return Ok(await bookingUseCase.GetSpecificDateBookings(date));
         }
-
+        
         [HttpPost("new")]
         public async Task<ActionResult> NewBook(Booking booking)
         {
             try
             {
+                // Call the GetSpecificDateBookings using bookings start date to get bookings same day
+                var overlappingBookings = await bookingUseCase.GetOverlappingBookings(booking.Time);
+
                 // Call the BookNew method from the BookingUseCase to create new booking
-                await bookingUseCase.BookNew(booking);
-                
+                await bookingUseCase.BookNew(booking, overlappingBookings);
+
                 // Return OkObjectResult to signify a successful HTTP response
                 return Ok();
             }
             catch (Exception e)
             {
                 // Return BadRequestResult to signify a unsuccessful HTTP response
-                return BadRequest();
+                return BadRequest(e.Message);
             }
         }
 
