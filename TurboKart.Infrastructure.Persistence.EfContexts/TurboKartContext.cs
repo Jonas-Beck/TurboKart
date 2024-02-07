@@ -20,6 +20,17 @@ namespace TurboKart.Infrastructure.Persistence.EfContexts
                 .WithOne(b => b.Customer)
                 .HasForeignKey(b => b.CustomerId)
                 .HasPrincipalKey(c => c.CustomerId);
+            
+            modelBuilder.Entity<Booking>(b =>
+            {
+                b.OwnsOne(y => y.Time, time =>
+                {
+                    time.Property(t => t.Start).IsRequired();
+                    time.Property(t => t.End).IsRequired();
+                    time.Property(t => t.Duration).IsRequired();
+                });
+            });
+
         }
 
     }
