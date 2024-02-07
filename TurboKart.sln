@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
@@ -41,19 +41,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Networking", "Networking", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Infrastructure.Networking.Services", "TurboKart.Infrastructure.Networking.Services\TurboKart.Infrastructure.Networking.Services.csproj", "{84370B45-9494-41CD-8FA5-AB2776E26A63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Websites.TurboKartBookingManagement", "TurboKart.Presentation.Websites.TurboKartBookingManagement\TurboKart.Presentation.Websites.TurboKartBookingManagement.csproj", "{F6FBB340-7805-4179-AAAA-B87CAAFAE0F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Presentation.Websites.TurboKartBookingManagement", "TurboKart.Presentation.Websites.TurboKartBookingManagement\TurboKart.Presentation.Websites.TurboKartBookingManagement.csproj", "{F6FBB340-7805-4179-AAAA-B87CAAFAE0F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Websites.TurboKartLIVE", "TurboKart.Presentation.Websites.TurboKartLIVE\TurboKart.Presentation.Websites.TurboKartLIVE.csproj", "{C8D40065-5BAB-4FDD-BB13-9025A8EA5AA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Presentation.Websites.TurboKartLIVE", "TurboKart.Presentation.Websites.TurboKartLIVE\TurboKart.Presentation.Websites.TurboKartLIVE.csproj", "{C8D40065-5BAB-4FDD-BB13-9025A8EA5AA5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{DC001213-641E-4654-A9C2-D627C91B392D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{44F7C531-EDBB-47CB-BA48-7C7A2CCE1E6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Console.LapTimerSimulation", "TurboKart.Presentation.Console.LapTimerSimulation\TurboKart.Presentation.Console.LapTimerSimulation.csproj", "{8D3D9996-488E-4436-9F08-8F8F8D426CA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Presentation.Console.LapTimerSimulation", "TurboKart.Presentation.Console.LapTimerSimulation\TurboKart.Presentation.Console.LapTimerSimulation.csproj", "{8D3D9996-488E-4436-9F08-8F8F8D426CA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Presentation.Service.GrpcLapTimer", "TurboKart.Presentation.Service.GrpcLapTimer\TurboKart.Presentation.Service.GrpcLapTimer.csproj", "{C37A5AB7-9A90-4FD0-92C7-5764D807B579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Presentation.Service.GrpcLapTimer", "TurboKart.Presentation.Service.GrpcLapTimer\TurboKart.Presentation.Service.GrpcLapTimer.csproj", "{C37A5AB7-9A90-4FD0-92C7-5764D807B579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Tests.UseCases", "TurboKart.Tests.UseCases\TurboKart.Tests.UseCases.csproj", "{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TurboKart.Tests.UseCases", "TurboKart.Tests.UseCases\TurboKart.Tests.UseCases.csproj", "{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
