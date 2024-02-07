@@ -62,7 +62,7 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
             return await set.Include(b => b.Customer)
                             .Where(b =>
                                 b.Time.Start <= bookingTime.End &&
-                                b.Time.End >= bookingTime.Start
+                                bookingTime.Start <= b.Time.End
                             )
                             .ToListAsync();
         }

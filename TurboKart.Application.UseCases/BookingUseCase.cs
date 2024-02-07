@@ -20,7 +20,7 @@ namespace TurboKart.Application.UseCases
                 throw new ArgumentException("Driver count needs to be between 1-20");
 
             // Check if new booking has any overlaps
-            if (!overlappingBookings.Any())
+            if (overlappingBookings.Any())
             {
                 // Add new booking to list with overlap bookings
                 overlappingBookings = overlappingBookings.Append(newBooking);

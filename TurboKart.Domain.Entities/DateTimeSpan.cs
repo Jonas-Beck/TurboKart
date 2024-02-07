@@ -53,7 +53,7 @@ public class DateTimeSpan
     public static bool CheckOverlap(DateTimeSpan dateTimeSpan1, DateTimeSpan dateTimeSpan2)
     {
         return (dateTimeSpan1.Start <= dateTimeSpan2.End &&
-                dateTimeSpan1.End >= dateTimeSpan2.Start);
+                dateTimeSpan2.Start <= dateTimeSpan1.End);
     }
 
     public static TimeSpan CalculateDuration(DateTime start, DateTime end)
