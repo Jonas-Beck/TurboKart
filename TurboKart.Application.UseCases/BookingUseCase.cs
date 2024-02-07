@@ -1,5 +1,6 @@
 ﻿using TurboKart.Application.Interfaces;
 using TurboKart.Domain.Entities;
+using TurboKart.Domain.Exceptions;
 using TurboKart.Infrastructure.Persistence.Interfaces;
 
 namespace TurboKart.Application.UseCases
@@ -15,9 +16,11 @@ namespace TurboKart.Application.UseCases
 
         public async Task BookNew(Booking newBooking, IEnumerable<Booking> overlappingBookings)
         {
-            // Check new booking driverCount throw exception if not valid
-            if (newBooking.DriverCount is > 20 or <= 0)
-                throw new ArgumentException("Driver count needs to be between 1-20");
+            // Check newBooking.DriverCount for errors
+            switch (newBooking.DriverCount) {
+                case <= 0: throw new ArgumentException("Invalid DriverCount");
+                case > 20: throw new InvalidDriverCountException("DriverCount cannot be above 20");
+            }
 
             // Check if new booking has any overlaps
             if (overlappingBookings.Any())
@@ -35,7 +38,7 @@ namespace TurboKart.Application.UseCases
 
                     // If totalDriverCount > 20 the new booking cannot be created 
                     if (totalDriverCount > 20)
-                        throw new ArgumentException("Not enough space on the track");
+                        throw new NotEnoughSpaceException("Not enough space on the track");
                 }
             }
             

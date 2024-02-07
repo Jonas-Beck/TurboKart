@@ -59,8 +59,10 @@ namespace TurboKart.Infrastructure.Persistence.Repositories
         // Return all bookings that overlap with a specific Start and End DateTime
         public async Task<IEnumerable<Booking>> GetOverlappingBookings(DateTimeSpan bookingTime)
         {
+            // Get all bookings from same day as bookingTime
             var bookings = await GetSpecificDateBookings(DateOnly.FromDateTime(bookingTime.Start));
 
+            // Return all bookings that overlap with bookingTime
             return bookings.Where(b => DateTimeSpan.CheckOverlap(b.Time, bookingTime));
         }
     }

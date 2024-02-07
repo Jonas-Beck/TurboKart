@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices.JavaScript;
 using Microsoft.AspNetCore.Mvc;
+using TurboKart.Domain.Exceptions;
 
 namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
 {
@@ -73,6 +74,14 @@ namespace TurboKart.Presentation.Apis.TurboKartAPI.Controllers
 
                 // Return OkObjectResult to signify a successful HTTP response
                 return Ok();
+            }
+            catch (InvalidDriverCountException)
+            {
+                return BadRequest("Driver count cannot be above 20");
+            }
+            catch (NotEnoughSpaceException)
+            {
+                return BadRequest($"Not enough space for {booking.DriverCount} driver(s)");
             }
             catch (Exception e)
             {
