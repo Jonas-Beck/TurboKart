@@ -6,13 +6,13 @@ namespace TurboKart.Domain.Entities;
 [ComplexType]
 public class DateTimeSpan
 {
-    public DateTime Start { get; }
-    public DateTime End { get; }
-    public TimeSpan Duration { get; }
+    public DateTime Start { get; init; }
+    public DateTime End { get; init; }
+    public TimeSpan Duration { get; init; }
 
     
-    // Private Empty constructor for EF Core
-    private DateTimeSpan()
+    // Empty constructor for EF Core
+    public DateTimeSpan()
     {
         
     }
