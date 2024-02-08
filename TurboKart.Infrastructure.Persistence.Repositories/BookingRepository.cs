@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TurboKart.Domain.Entities;
+using TurboKart.Domain.ValueObjects;
 using TurboKart.Infrastructure.Persistence.Interfaces;
 
 namespace TurboKart.Infrastructure.Persistence.Repositories

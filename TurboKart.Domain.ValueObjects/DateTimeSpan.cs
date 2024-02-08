@@ -1,7 +1,6 @@
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TurboKart.Domain.Entities;
+namespace TurboKart.Domain.ValueObjects;
 
 [ComplexType]
 public class DateTimeSpan
@@ -52,8 +51,8 @@ public class DateTimeSpan
 
     public static bool CheckOverlap(DateTimeSpan dateTimeSpan1, DateTimeSpan dateTimeSpan2)
     {
-        return (dateTimeSpan1.Start <= dateTimeSpan2.End &&
-                dateTimeSpan2.Start <= dateTimeSpan1.End);
+        return (dateTimeSpan1.Start < dateTimeSpan2.End &&
+                dateTimeSpan2.Start < dateTimeSpan1.End);
     }
 
     public static TimeSpan CalculateDuration(DateTime start, DateTime end)

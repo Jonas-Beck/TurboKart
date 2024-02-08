@@ -1,4 +1,5 @@
 ﻿using TurboKart.Domain.Entities;
+using TurboKart.Domain.ValueObjects;
 
 namespace TurboKart.Application.Interfaces
 {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TurboKart.Domain.Entities;
+using TurboKart.Domain.ValueObjects;
 
 namespace TurboKart.Infrastructure.Persistence.Interfaces
 {
