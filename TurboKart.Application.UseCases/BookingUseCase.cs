@@ -1,6 +1,7 @@
 ﻿using TurboKart.Application.Interfaces;
 using TurboKart.Domain.Entities;
 using TurboKart.Domain.Exceptions;
+using TurboKart.Domain.ValueObjects;
 using TurboKart.Infrastructure.Persistence.Interfaces;
 
 namespace TurboKart.Application.UseCases
@@ -32,9 +33,10 @@ namespace TurboKart.Application.UseCases
                 foreach (Booking booking  in overlappingBookings)
                 {
                     // Get total driverCount of all bookings that overlap with the current booking from loop
+                    // TODO Refactor instead of checking booking id in where statement
                     var totalDriverCount = overlappingBookings
-                        .Where(b => DateTimeSpan.CheckOverlap(booking.Time, b.Time))
-                        .Aggregate(0, (total, next) => total + next.DriverCount);
+                        .Where(b => DateTimeSpan.CheckOverlap(booking.Time, b.Time) && b.BookingId != booking.BookingId)
+                        .Aggregate(booking.DriverCount, (total, next) => total + next.DriverCount);
 
                     // If totalDriverCount > 20 the new booking cannot be created 
                     if (totalDriverCount > 20)

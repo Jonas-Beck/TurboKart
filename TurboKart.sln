@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Domain.Exceptions
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Domain.ValueObjects", "TurboKart.Domain.ValueObjects\TurboKart.Domain.ValueObjects.csproj", "{3B3525C6-3EC8-4B5E-B781-1B66460366B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurboKart.Tests.ValueObjects", "TurboKart.Tests.ValueObjects\TurboKart.Tests.ValueObjects.csproj", "{91A3274B-5ACA-495B-B28A-F3FC6C0AAE2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +135,10 @@ Global
 		{3B3525C6-3EC8-4B5E-B781-1B66460366B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B3525C6-3EC8-4B5E-B781-1B66460366B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B3525C6-3EC8-4B5E-B781-1B66460366B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A3274B-5ACA-495B-B28A-F3FC6C0AAE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A3274B-5ACA-495B-B28A-F3FC6C0AAE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A3274B-5ACA-495B-B28A-F3FC6C0AAE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A3274B-5ACA-495B-B28A-F3FC6C0AAE2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +167,7 @@ Global
 		{C71A2C7A-6822-48B7-B9C8-CA190C76F1D2} = {91597969-507A-4E37-886F-08FE5E706BDD}
 		{9C4F6EEA-70F2-47F5-8353-59E471CAEC7D} = {BC59BC81-90E0-4FED-9719-04439D68C756}
 		{3B3525C6-3EC8-4B5E-B781-1B66460366B0} = {BC59BC81-90E0-4FED-9719-04439D68C756}
+		{91A3274B-5ACA-495B-B28A-F3FC6C0AAE2C} = {91597969-507A-4E37-886F-08FE5E706BDD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E110200-F77D-49C5-AA7A-7D6DE59BA91F}

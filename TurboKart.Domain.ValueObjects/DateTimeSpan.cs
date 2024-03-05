@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Intrinsics.X86;
 
 namespace TurboKart.Domain.ValueObjects;
 
@@ -51,8 +52,12 @@ public class DateTimeSpan
 
     public static bool CheckOverlap(DateTimeSpan dateTimeSpan1, DateTimeSpan dateTimeSpan2)
     {
-        return (dateTimeSpan1.Start < dateTimeSpan2.End &&
-                dateTimeSpan2.Start < dateTimeSpan1.End);
+         if (dateTimeSpan1.End == dateTimeSpan2.Start ^ dateTimeSpan2.End == dateTimeSpan1.Start)
+         {
+             return false;
+         }
+
+         return (dateTimeSpan1.End >= dateTimeSpan2.Start) && (dateTimeSpan2.End >= dateTimeSpan1.Start);
     }
 
     public static TimeSpan CalculateDuration(DateTime start, DateTime end)
